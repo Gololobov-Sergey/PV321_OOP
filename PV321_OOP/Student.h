@@ -1,13 +1,18 @@
 #pragma once
-#include<iostream>
 
 class Student
 {
 private:
-	char* name;
+	char* name = nullptr;
 	int age;
 
 public:
+
+	Student();
+
+	Student(const char* n, int a);
+	
+	~Student();
 
 	void setAge(int a);
 
@@ -16,5 +21,8 @@ public:
 	void setName(const char* n);
 
 	char* getName();
+
+	void print();
+
 };
 

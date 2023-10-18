@@ -5,7 +5,6 @@
 using namespace std;
 
 
-
 class Point
 {
 
@@ -21,17 +20,28 @@ public:
 
 int main()
 {
-	Point p;
+	//Point p;
 	/*p.x = 10;
 	p.y = 20;*/
-	p.print();
+	//p.print();
 	
+	srand(time(0));
+	int hardRoulette = rand() % 8;
+	cout << "Student: " << hardRoulette << endl;
 
 
-	Student s;
-	s.setAge(20);
-	s.setName("Oleg");
+	{
+		Student s("Oleg", 20);
+		Student s1;
+		s1.print();
+		s1.setAge(20);
+		s1.setName("Petro");
+		s.print();
+		s1.print();
+	}
 
-	cout << s.getName() << endl;
-	cout << s.getAge() << endl;
+
+
+	/*std::cout << s.getName() << endl;
+	cout << s.getAge() << endl;*/
 }
