@@ -3,18 +3,23 @@
 class Student
 {
 private:
+
+	const int group;
+
 	char* name = nullptr;
-	int age;
+	int   age  = 0;
+
+	static int count;
 
 public:
 
-	Student();
+	Student(int g);
 
-	Student(const char* n, int a);
+	Student(const char* n, int a, int g);
 	
 	~Student();
 
-	void setAge(int a);
+	void setAge(int age);
 
 	int getAge();
 
@@ -24,5 +29,12 @@ public:
 
 	void print();
 
+	Student get();
+
+	int getGroup();
+
+	static int getCount();
+
 };
+
 
