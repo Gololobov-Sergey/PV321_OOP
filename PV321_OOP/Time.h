@@ -12,11 +12,11 @@ private:
     int second = 0;
 
 public:
-    Time();
+    Time() : Time(0) { cout << "Ctor 0" << endl; }
 
-    Time(int sec);
+    Time(int sec) : Time(0, sec) { cout << "Ctor 1" << endl; }
 
-    Time(int min, int sec);
+    Time(int min, int sec) : Time(0, min, sec) { cout << "Ctor 2" << endl; }
 
     Time(int hour_, int min, int sec);
 
@@ -37,23 +37,24 @@ public:
     void setTime(int hour_, int min, int sec);
 };
 
-Time::Time()
-{
-    hour = minute = second = 0;
-}
-
-Time::Time(int sec)
-{
-    setTime(0, 0, sec);
-}
-
-Time::Time(int min, int sec)
-{
-    setTime(0, min, sec);
-}
+//Time::Time()
+//{
+//    hour = minute = second = 0;
+//}
+//
+//Time::Time(int sec)
+//{
+//    setTime(0, 0, sec);
+//}
+//
+//Time::Time(int min, int sec)
+//{
+//    setTime(0, min, sec);
+//}
 
 Time::Time(int hour_, int min, int sec)
 {
+    cout << "Ctor 3" << endl;
     setTime(hour_, min, sec);
 }
 

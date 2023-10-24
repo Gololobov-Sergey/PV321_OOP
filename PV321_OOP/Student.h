@@ -13,9 +13,11 @@ private:
 
 public:
 
-	Student(int g);
+	Student(int g) : Student("No name", 0, g) {}
 
 	Student(const char* n, int a, int g);
+
+	Student(const Student& obj);
 	
 	~Student();
 

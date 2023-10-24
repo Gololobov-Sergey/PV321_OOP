@@ -5,7 +5,18 @@
 
 using namespace std;
 
+void lucky()
+{
+	srand(time(0));
+	int hardRoulette = rand() % 8;
+	cout << "Student: " << hardRoulette << endl;
+}
 
+
+void PrintStudent(Student st)
+{
+	st.print();
+}
 
 class Point
 {
@@ -22,15 +33,29 @@ public:
 
 int main()
 {
+
+	//////// 24.10.2023  /////////
+
+
+	/*Time t;
+	Time t1(3);
+	Time t2(4, 3);
+	Time t3(3, 5, 7);
+
+	t.getHour();*/
+
+
+	Student s("Oleg", 20, 321);
+	s.print();
+	PrintStudent(s);
+	s.print();
+
+
 	//Point p;
 	/*p.x = 10;
 	p.y = 20;*/
 	//p.print();
 	
-	srand(time(0));
-	int hardRoulette = rand() % 8;
-	cout << "Student: " << hardRoulette << endl;
-
 
 	//{
 	//	Student s("Oleg", 20, 55);
@@ -63,10 +88,10 @@ int main()
 	t4.print();*/
 
 
-	const Time t4(19, 20, 15);
+	/*const Time t4(19, 20, 15);
 	t4.print();
 	cout << t4.getHour() << endl;
-	cout << t4.getSecond() << endl;
+	cout << t4.getSecond() << endl;*/
 
 	/*int a = 5.2;
 	int b(5.2);
