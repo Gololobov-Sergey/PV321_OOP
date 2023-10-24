@@ -1,15 +1,26 @@
 #include<iostream>
+#include<Windows.h>
 
 #include"Student.h"
 #include"Time.h"
+#include"Array.h"
 
 using namespace std;
 
 void lucky()
 {
+	char pib[][50] = { 
+		"Вітренко Дмитро",
+		"Калатур Марк", 
+		"Супруненко Ярослав", 
+		"Резніченко Ангеліна", 
+		"Федосеєв Владислав", 
+		"Андрієвський В'ячеслав", 
+		"Ващенко Владислав", 
+		"Проценко Роман" };
 	srand(time(0));
 	int hardRoulette = rand() % 8;
-	cout << "Student: " << hardRoulette << endl;
+	cout << "Student: " << pib[hardRoulette] << endl;
 }
 
 
@@ -33,9 +44,17 @@ public:
 
 int main()
 {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	//////// 24.10.2023  /////////
 
+	lucky();
+
+
+	Array a(10);
+	a.set();
+	a.print();
 
 	/*Time t;
 	Time t1(3);
@@ -45,10 +64,10 @@ int main()
 	t.getHour();*/
 
 
-	Student s("Oleg", 20, 321);
+	/*Student s("Oleg", 20, 321);
 	s.print();
 	PrintStudent(s);
-	s.print();
+	s.print();*/
 
 
 	//Point p;
