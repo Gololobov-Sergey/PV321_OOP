@@ -11,14 +11,14 @@ class Array
 
 public:
 	Array();
-	Array(size_t size);
+	explicit Array(size_t size);
 	Array(const Array& obj);
 	~Array();
-	void set(int min, int max);
-	void print();
+	void set(int min, int max) const;
+	void print() const;
 	void push(int value);
 	void insert(int value, size_t index);
-	int get(size_t index);
+	int get(size_t index) const;
 	void remove(size_t index);
 
 };
@@ -45,7 +45,7 @@ Array::~Array()
 	delete[] arr;
 }
 
-void Array::set(int min = 0, int max = 9)
+void Array::set(int min = 0, int max = 9) const
 {
 	for (size_t i = 0; i < size; i++)
 	{
@@ -53,7 +53,7 @@ void Array::set(int min = 0, int max = 9)
 	}
 }
 
-void Array::print()
+void Array::print() const
 {
 	for (size_t i = 0; i < size; i++)
 	{
@@ -62,7 +62,7 @@ void Array::print()
 	cout << endl;
 }
 
-inline int Array::get(size_t index)
+inline int Array::get(size_t index) const
 {
 	assert(index < size && "Invalid index");
 	return 0;

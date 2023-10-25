@@ -4,6 +4,7 @@
 #include"Student.h"
 #include"Time.h"
 #include"Array.h"
+#include"String.h"
 
 using namespace std;
 
@@ -29,6 +30,11 @@ void PrintStudent(Student st)
 	st.print();
 }
 
+void PrintArray(Array a)
+{
+	a.print();
+}
+
 class Point
 {
 
@@ -51,10 +57,15 @@ int main()
 
 	lucky();
 
+	String s("mama");
+	//s.copy("lwkejfwe");
+	s.print();
 
-	Array a(10);
+	/*Array a(10);
 	a.set();
 	a.print();
+	PrintArray(a);
+	a.print();*/
 
 	/*Time t;
 	Time t1(3);
