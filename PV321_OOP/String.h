@@ -24,7 +24,7 @@ public:
 String::String() : String(80) {}
 
 
-inline String::String(size_t size) : size(size)
+String::String(size_t size) : size(size)
 {
     str = new char[size + 1];
     for (size_t i = 0; i < size; i++)
@@ -34,18 +34,18 @@ inline String::String(size_t size) : size(size)
     str[size] = '\0';
 }
 
-inline String::String(const char* str)
+String::String(const char* str)
 {
     size = strlen(str);
     copy(str);
 }
 
-inline String::~String()
+String::~String()
 {
     delete[] str;
 }
 
-inline void String::print()
+void String::print()
 {
     cout << str;
 }

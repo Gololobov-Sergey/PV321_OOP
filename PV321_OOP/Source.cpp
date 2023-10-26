@@ -5,6 +5,8 @@
 #include"Time.h"
 #include"Array.h"
 #include"String.h"
+#include"Friend.h"
+#include"Fraction.h"
 
 using namespace std;
 
@@ -50,16 +52,46 @@ public:
 
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	//SetConsoleCP(1251);
+	//SetConsoleOutputCP(1251);
+	//lucky();
+
+	//////// 26.10.2023  /////////
+
+
+	// - , ++ , -- , 
+	// = , + , - , * , / , % , += .....
+	//
+
+	Fraction f1(1, 3);
+	Fraction f2(2, 5);
+	//Fraction f3 = f2.add(f1);
+	Fraction f3 = f2 + f1;
+	f3.display();
+	if (f1 > f2)
+	{
+
+	}
+
+
+
+	//Temperature t(25);
+	//Humidity h(40);
+
+	////WeatherInformer(t, h);
+
+	//WeatherInformer w;
+	//w.info(t, h);
+
+
 
 	//////// 24.10.2023  /////////
 
-	lucky();
+	
 
-	String s("mama");
+	//String s("mama");
 	//s.copy("lwkejfwe");
-	s.print();
+	//s.print();
 
 	/*Array a(10);
 	a.set();
