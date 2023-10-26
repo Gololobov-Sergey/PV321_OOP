@@ -38,6 +38,11 @@ public:
 
 	static int getCount();
 
+	Student operator++()
+	{
+		age++;
+	}
+
 };
 
 

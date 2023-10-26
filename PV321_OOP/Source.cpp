@@ -61,16 +61,32 @@ int main()
 
 	// - , ++ , -- , 
 	// = , + , - , * , / , % , += .....
-	//
+	// ! , < , > , == , != , <= , >= 
 
 	Fraction f1(1, 3);
 	Fraction f2(2, 5);
 	//Fraction f3 = f2.add(f1);
-	Fraction f3 = f2 + f1;
+	//Fraction f3 = f2 + 10; //f2.op+(10);
+	Fraction f3 = 10 + f2; //10.op+(f2);
 	f3.display();
-	if (f1 > f2)
-	{
+	(f3++).display(); // f3.operator++();
+	f3.display();
 
+	f3 += f2;  //f3.op+=(f2)
+
+	int a = 5;
+	cout << ++a << endl;  // 6
+	cout << a << endl;    // 6
+	cout << a++ << endl;  // 6
+	cout << a << endl;    // 7
+
+	if (f1 == f2)
+	{
+		cout << "yes" << endl;
+	}
+	else
+	{
+		cout << "no" << endl;
 	}
 
 
