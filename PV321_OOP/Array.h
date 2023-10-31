@@ -21,6 +21,9 @@ public:
 	int get(size_t index) const;
 	void remove(size_t index);
 
+	int operator[](int index);
+	int operator[](const char* key);
+
 };
 
 Array::Array(): arr(nullptr), size(0) { }
@@ -62,8 +65,27 @@ void Array::print() const
 	cout << endl;
 }
 
-inline int Array::get(size_t index) const
+int Array::get(size_t index) const
 {
 	assert(index < size && "Invalid index");
-	return 0;
+	return arr[index];
+}
+
+inline int Array::operator[](int index)
+{
+	assert(index < size && "Invalid index");
+	return arr[index];
+}
+
+inline int Array::operator[](const char* key)
+{
+	if (strcmp(key, "zero") == 0)
+		return arr[0];
+	if (strcmp(key, "one") == 0)
+		return arr[1];
+	if (strcmp(key, "two") == 0)
+		return arr[2];
+	if (strcmp(key, "tree") == 0)
+		return arr[3];
+
 }

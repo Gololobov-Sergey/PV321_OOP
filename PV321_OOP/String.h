@@ -18,6 +18,27 @@ public:
     String(const String& obj);
     //void set();
     void print();
+
+    String& operator=(const String& obj);
+
+    int compare(const String& str);
+
+    bool operator<(const String& str);
+    bool operator>(const String& str);
+    bool operator<=(const String& str);
+    bool operator<=(const String& str);
+    bool operator==(const String& str);
+    bool operator!=(const String& str);
+
+    String operator+(const String& str);
+    void operator+=(const String& str);
+    String operator*(int n);
+    char operator[](size_t index);
+    void operator()(const char* s);
+    size_t length();
+
+    friend ostream& operator<<(ostream& out, const String& st);
+    friend istream& operator>>(istream& in, String& st);
     
 };
 

@@ -13,12 +13,15 @@ private:
 	static int count;
 
 public:
+	Student() : Student(0) {}
 
 	Student(int g) : Student("No name", 0, g) {}
 
 	Student(const char* n, int a, int g);
 
 	Student(const Student& obj);
+
+	Student& operator=(const Student& obj);
 	
 	~Student();
 
@@ -37,11 +40,6 @@ public:
 	int getGroup();
 
 	static int getCount();
-
-	Student operator++()
-	{
-		age++;
-	}
 
 };
 

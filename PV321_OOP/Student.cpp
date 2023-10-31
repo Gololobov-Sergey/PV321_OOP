@@ -28,6 +28,22 @@ Student::Student(const Student& obj) : group(obj.group)
 	cout << "Constructor copy" << endl;
 }
 
+Student& Student::operator=(const Student& obj) 
+{
+	//1
+	if (this == &obj)
+		return *this;
+	//2
+	delete[] this->name;
+	//3
+	this->age = obj.age;
+	int len = strlen(obj.name);
+	this->name = new char[len + 1];
+	strcpy_s(name, len + 1, obj.name);
+	//4
+	return *this;
+}
+
 Student::~Student()
 {
 	count--;
@@ -64,7 +80,7 @@ void Student::print()
 {
 	cout << "Name   : " << name << endl;
 	cout << "Age    : " << age << endl;
-	cout << "Group  : " << group << endl;
+	/*cout << "Group  : " << group << endl;*/
 }
 
 Student Student::get()
@@ -74,7 +90,7 @@ Student Student::get()
 
 int Student::getGroup()
 {
-	return group;
+	return 0/*group*/;
 }
 
 int Student::getCount()

@@ -87,7 +87,7 @@ public:
 
     void operator += (const Fraction& other)
     {
-
+        *this = *this + other;
     }
 
     void operator -= (const Fraction& other)
@@ -105,7 +105,12 @@ public:
 
     }
 
-    bool operator > (const Fraction& other)
+    auto operator<=>(const Fraction& other)
+    {
+        return (float)numerator / denominator <=> (float)other.numerator / other.denominator;
+    }
+
+    /*bool operator > (const Fraction& other)
     {
         return (float)numerator / denominator > (float)other.numerator / other.denominator;
     }
@@ -123,8 +128,33 @@ public:
     bool operator != (const Fraction& other)
     {
         return false;
+    }*/
+
+    operator float()
+    {
+        return (float)numerator / denominator;
     }
 
+    operator double()
+    {
+        return (double)numerator / denominator;
+    }
+
+    operator Student()
+    {
+        return Student("numerator", denominator, numerator);
+    }
+
+    friend Fraction operator+(int n, Fraction f2);
+
+    void operator()(int n, int d)
+    {
+        numerator = n;
+        denominator = d;
+    }
+
+    friend ostream& operator<<(ostream& out, const Fraction& f);
+    friend istream& operator>>(istream& in, Fraction& f);
 };
 
 
@@ -137,5 +167,21 @@ public:
 
 Fraction operator+(int n, Fraction f2)
 {
-    return f2 + n;
+    return Fraction(n * f2.denominator + f2.numerator, f2.denominator);
+}
+
+ostream& operator<<(ostream& out, const Fraction& f)
+{
+    out << f.numerator << '/' << f.denominator;
+    return out;
+}
+
+istream& operator>>(istream& in, Fraction& f)
+{
+    cout << "Numerator   : ";
+    in >> f.numerator;
+    cout << "Denominator : ";
+    in >> f.denominator;
+    f.simplify();
+    return in;
 }
