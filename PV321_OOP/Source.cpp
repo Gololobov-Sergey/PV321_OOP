@@ -7,8 +7,15 @@
 #include"String.h"
 #include"Friend.h"
 #include"Fraction.h"
+#include"StaticArray.h"
 
 using namespace std;
+
+void SetColor(int text, int background)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)((background << 4) | text));
+}
+
 
 void lucky()
 {
@@ -32,7 +39,8 @@ void PrintStudent(Student st)
 	st.print();
 }
 
-void PrintArray(Array a)
+template<class T>
+void PrintArray(Array<T> a)
 {
 	a.print();
 }
@@ -56,6 +64,15 @@ int main()
 	//SetConsoleOutputCP(1251);
 	//lucky();
 
+	//////// 01.11.2023  /////////
+
+	/*Student s1("Oleg", 20, 999);
+	cout << s1 << endl;*/
+
+	/*Array<Fraction> a(10);
+	a.set(65, 120);
+	a.print();*/
+
 
 	//////// 31.10.2023  /////////
 
@@ -71,17 +88,17 @@ int main()
 	//Student st = f1;
 	//st.print();
 
-	Fraction f2;
-	cin >> f2;
-	cout << f2 << endl;
-	f2(4, 7); // f2.oper()(4,7)
-	cout << f2 << endl;
+	//Fraction f2;
+	//cin >> f2;
+	//cout << f2 << endl;
+	//f2(4, 7); // f2.oper()(4,7)
+	//cout << f2 << endl;
 
 
 
 
-	/*Array a(10);
-	a.set();
+	/*Array<int> a(10);
+	a.set(65, 80);
 	a.print();
 	cout << a[3] << endl;
 	cout << a["one"] << endl;*/

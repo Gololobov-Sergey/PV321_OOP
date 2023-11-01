@@ -1,5 +1,7 @@
 #pragma once
+#include<iostream>
 
+using namespace std;
 
 class Student
 {
@@ -40,6 +42,8 @@ public:
 	int getGroup();
 
 	static int getCount();
+
+	friend ostream& operator<<(ostream& out, const Student& f);
 
 };
 

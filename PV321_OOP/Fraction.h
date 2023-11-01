@@ -154,6 +154,7 @@ public:
     }
 
     friend ostream& operator<<(ostream& out, const Fraction& f);
+
     friend istream& operator>>(istream& in, Fraction& f);
 };
 

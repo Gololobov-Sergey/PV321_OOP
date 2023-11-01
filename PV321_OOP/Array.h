@@ -4,9 +4,10 @@
 
 using namespace std;
 
+template<class T>
 class Array
 {
-	int* arr;
+	T* arr;
 	size_t size;
 
 public:
@@ -14,49 +15,76 @@ public:
 	explicit Array(size_t size);
 	Array(const Array& obj);
 	~Array();
-	void set(int min, int max) const;
+	void set(int min = 0, int max = 9) const;
 	void print() const;
-	void push(int value);
-	void insert(int value, size_t index);
-	int get(size_t index) const;
+	void push(T value);
+	void insert(T value, size_t index);
+	T get(size_t index) const;
 	void remove(size_t index);
 
-	int operator[](int index);
-	int operator[](const char* key);
+	T operator[](int index);
+	T operator[](const char* key);
 
 };
 
-Array::Array(): arr(nullptr), size(0) { }
+template<class T>
+Array<T>::Array(): arr(nullptr), size(0) { }
 
-Array::Array(size_t size) : size(size)
+template<class T>
+Array<T>::Array(size_t size) : size(size)
 {
-	arr = new int[size];
+	arr = new T[size];
 }
 
-Array::Array(const Array& obj)
+template<class T>
+Array<T>::Array(const Array& obj)
 {
 	size = obj.size;
-	arr = new int[size];
+	arr = new T[size];
 	for (size_t i = 0; i < size; i++)
 	{
 		arr[i] = obj.arr[i];
 	}
 }
 
-Array::~Array()
+template<class T>
+Array<T>::~Array()
 {
 	delete[] arr;
 }
 
-void Array::set(int min = 0, int max = 9) const
+template<class T>
+void Array<T>::set(int min, int max) const
 {
+	cout << "Set <template>" << endl;
 	for (size_t i = 0; i < size; i++)
 	{
 		arr[i] = rand() % (max - min + 1) + min;
 	}
 }
 
-void Array::print() const
+template<>
+void Array<double>::set(int min, int max) const
+{
+	cout << "Set <double>" << endl;
+	for (size_t i = 0; i < size; i++)
+	{
+		arr[i] = rand() % (max - min + 1) + min + 0.1;
+	}
+}
+
+template<>
+void Array<Student>::set(int min, int max) const
+{
+	cout << "Set <Student>" << endl;
+	for (size_t i = 0; i < size; i++)
+	{
+		arr[i] = Student();
+	}
+}
+
+template<class T>
+void Array<T>::print() const
 {
 	for (size_t i = 0; i < size; i++)
 	{
@@ -65,19 +93,22 @@ void Array::print() const
 	cout << endl;
 }
 
-int Array::get(size_t index) const
+template<class T>
+T Array<T>::get(size_t index) const
 {
 	assert(index < size && "Invalid index");
 	return arr[index];
 }
 
-inline int Array::operator[](int index)
+template<class T>
+T Array<T>::operator[](int index)
 {
 	assert(index < size && "Invalid index");
 	return arr[index];
 }
 
-inline int Array::operator[](const char* key)
+template<class T>
+T Array<T>::operator[](const char* key)
 {
 	if (strcmp(key, "zero") == 0)
 		return arr[0];
@@ -87,5 +118,4 @@ inline int Array::operator[](const char* key)
 		return arr[2];
 	if (strcmp(key, "tree") == 0)
 		return arr[3];
-
 }

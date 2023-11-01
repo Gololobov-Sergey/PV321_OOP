@@ -26,7 +26,7 @@ public:
     bool operator<(const String& str);
     bool operator>(const String& str);
     bool operator<=(const String& str);
-    bool operator<=(const String& str);
+    bool operator>=(const String& str);
     bool operator==(const String& str);
     bool operator!=(const String& str);
 

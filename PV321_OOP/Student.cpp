@@ -98,3 +98,9 @@ int Student::getCount()
 	return count;
 }
 
+ostream& operator<<(ostream& out, const Student& f)
+{
+	out << "Name   : " << f.name << endl;
+	out << "Age    : " << f.age << endl;
+	return out;
+}
