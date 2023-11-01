@@ -135,6 +135,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Fraction.h" />
     <ClInclude Include="Friend.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="StaticArray.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Student.h" />

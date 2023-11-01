@@ -8,6 +8,7 @@
 #include"Friend.h"
 #include"Fraction.h"
 #include"StaticArray.h"
+#include"Matrix.h"
 
 using namespace std;
 
@@ -60,14 +61,22 @@ public:
 
 int main()
 {
-	//SetConsoleCP(1251);
-	//SetConsoleOutputCP(1251);
-	//lucky();
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	lucky();
 
 	//////// 01.11.2023  /////////
 
+
+	Matrix<int> m(3, 3);
+	m.setRandom();
+	cout << m << endl;
+
+
 	/*Student s1("Oleg", 20, 999);
 	cout << s1 << endl;*/
+	
 
 	/*Array<Fraction> a(10);
 	a.set(65, 120);
@@ -78,7 +87,8 @@ int main()
 
 	/*Student s1("Oleg", 20, 999);
 	s1.print();
-	Student s2(s1);
+	//Student s2(s1);
+	Student s2 = s1;
 	s2 = s1;
 	s2.print();*/
 
