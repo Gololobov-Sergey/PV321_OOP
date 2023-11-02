@@ -9,6 +9,8 @@
 #include"Fraction.h"
 #include"StaticArray.h"
 #include"Matrix.h"
+#include"Stack.h"
+#include"Calc.h"
 
 using namespace std;
 
@@ -63,15 +65,41 @@ int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	cout.setf(ios::boolalpha);
 
-	lucky();
+	//lucky();
+
+	//////// 02.11.2023  /////////
+
+
+	Calc c("2*2^3+3");
+	cout << c.getResult() << endl;
+
+
+	/*Stack<int> st = {1,2,3,4};
+	st.push(10);
+	st.push(20);
+	st.push(30);
+	st.push(40);
+	st.print();
+	cout << st.isEmpty() << endl;
+	cout << st.peek() << endl;
+	st.pop();
+	st.pop();
+	st.print();
+	cout << st.peek() << endl;
+	st.clear();
+	st.print();
+	cout << st.isEmpty() << endl;*/
+
+
 
 	//////// 01.11.2023  /////////
 
 
-	Matrix<int> m(3, 3);
+	/*Matrix<int> m(3, 3);
 	m.setRandom();
-	cout << m << endl;
+	cout << m << endl;*/
 
 
 	/*Student s1("Oleg", 20, 999);
