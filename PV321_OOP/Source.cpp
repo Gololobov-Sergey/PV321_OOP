@@ -11,6 +11,7 @@
 #include"Matrix.h"
 #include"Stack.h"
 #include"Calc.h"
+#include"Queue.h"
 
 using namespace std;
 
@@ -69,11 +70,45 @@ int main()
 
 	//lucky();
 
+
+	//////// 07.11.2023  /////////
+
+	PriorityQueue<int, Fraction> q;
+	q.enqueue(10, Fraction(1, 2));
+	q.enqueue(20, Fraction(2, 3));
+	q.enqueue(30, Fraction(1, 4));
+	q.enqueue(40, Fraction(1, 6));
+	q.enqueue(50, Fraction(5, 2));
+	q.print();
+
+
+	/*Queue<int> q = { 5,6,7,8 };
+	q.enqueue(10);
+	q.enqueue(20);
+	q.enqueue(30);
+	q.enqueue(40);
+	q.print();
+	q.dequeue();
+	q.dequeue();
+	q.dequeue();
+	q.print();
+	q.clear();
+	q.print();
+	q.enqueue(100);
+	q.enqueue(200);
+	q.enqueue(300);
+	q.enqueue(400);
+	q.enqueue(500);
+	q.ring();
+	q.ring();
+	q.print();*/
+
+
 	//////// 02.11.2023  /////////
 
 
-	Calc c("2*2^3+3");
-	cout << c.getResult() << endl;
+	/*Calc c("2*2^3+3");
+	cout << c.getResult() << endl;*/
 
 
 	/*Stack<int> st = {1,2,3,4};
