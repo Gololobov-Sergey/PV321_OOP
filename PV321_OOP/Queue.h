@@ -120,7 +120,7 @@ void Queue<T>::print() const
 	Node<T>* temp = first;
 	while (temp)
 	{
-		cout << temp->value << " ";
+		cout << temp->value << endl;
 		temp = temp->next;
 	}
 	cout << endl;

@@ -12,6 +12,7 @@
 #include"Stack.h"
 #include"Calc.h"
 #include"Queue.h"
+#include"PrintServer.h"
 
 using namespace std;
 
@@ -62,6 +63,7 @@ public:
 	}
 };
 
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -70,16 +72,36 @@ int main()
 
 	//lucky();
 
+	string fn[] = { "file1.xtx", "file2.xls", "file3.doc", "file4.ppt", "file5.pdf" };
+
+
+	PrintServer ps("192.168.0.201");
+
+	int i = 0;
+	while (true)
+	{
+		if (i % 6 == 0)
+		{
+			ps.addTaskPrint(
+				TaskPrint(fn[rand() % 5],
+				rand() % 4 + 4,
+				(DEPARTMENTS)(rand() % 4)));
+		}
+		ps.work();
+		i++;
+		Sleep(1000);
+	}
+
 
 	//////// 07.11.2023  /////////
 
-	PriorityQueue<int, Fraction> q;
+	/*PriorityQueue<int, Fraction> q;
 	q.enqueue(10, Fraction(1, 2));
 	q.enqueue(20, Fraction(2, 3));
 	q.enqueue(30, Fraction(1, 4));
 	q.enqueue(40, Fraction(1, 6));
 	q.enqueue(50, Fraction(5, 2));
-	q.print();
+	q.print();*/
 
 
 	/*Queue<int> q = { 5,6,7,8 };
