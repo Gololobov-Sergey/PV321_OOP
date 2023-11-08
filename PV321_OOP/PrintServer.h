@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<iostream>
 #include<iomanip>
 
@@ -16,10 +16,10 @@ ostream& operator<<(ostream& out, const DEPARTMENTS& d)
 {
 	switch (d)
 	{
-	case DEPARTMENTS::GENERAL:   out << "���������"; break;
-	case DEPARTMENTS::TRANSPORT: out << "������������"; break;
-	case DEPARTMENTS::ACCOUNTS:  out << "����������"; break;
-	case DEPARTMENTS::DIRECTOR:  out << "��������"; break;
+	case DEPARTMENTS::GENERAL:   out << "Загальний"; break;
+	case DEPARTMENTS::TRANSPORT: out << "Транспортний"; break;
+	case DEPARTMENTS::ACCOUNTS:  out << "Бухгалтерія"; break;
+	case DEPARTMENTS::DIRECTOR:  out << "Директор"; break;
 	}
 	return out;
 }
@@ -65,7 +65,7 @@ size_t TaskPrint::getTimePrint() const
 ostream& operator<<(ostream& out, const TaskPrint& tp)
 {
 	out << setw(15) << left << tp.department << setw(12) << tp.fName
-		<< setw(4) << tp.timePrint << endl;
+		<< setw(4) << tp.timePrint;
 	return out;
 }
 
@@ -77,6 +77,7 @@ class PrintServer
 	Queue<TaskPrint> qStatistics;
 	TaskPrint currentTaskPrint;
 	size_t leftTimePrint = 0;
+	size_t allTime = 0;
 
 public:
 	PrintServer(string ip);
@@ -104,17 +105,31 @@ void PrintServer::work()
 
 	system("cls");
 	cout << "PrintServer : " << ip << endl;
-	cout << "---------------------------" << endl << endl;
-	cout << "Printing :   left time - " << leftTimePrint << endl;
+	cout << "----------------------------" << endl << endl;
+	cout << "Друкується :   Залишилось часу - " << leftTimePrint << endl;
 	if (leftTimePrint > 0)
 		cout << currentTaskPrint << endl;
 	else
-		cout << endl;
+		cout << endl << endl;
 
 	cout << endl;
-	cout << "Waiting:" << endl;
-	cout << "---------------------------" << endl;
+	cout << "Очікує :                          Надруковано:" << endl;
+	cout << "----------------------------      --------------------------------" << endl;
 	qPrint.print();
+	qStatistics.printLast10(34, 8);
+
+	gotoxy(0, 20);
+	cout << "------------------------------------------------------------------" << endl;
+	cout << "Надруковано файлів: " << setw(4) << qStatistics.length() << " Загальний час: " << allTime << endl;
+
+	if (leftTimePrint > 0)
+		leftTimePrint--;
+
+	if (leftTimePrint == 0)
+	{
+		qStatistics.enqueue(currentTaskPrint);
+		allTime += currentTaskPrint.getTimePrint();
+	}
 
 }
 

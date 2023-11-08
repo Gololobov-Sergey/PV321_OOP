@@ -4,6 +4,8 @@
 #include<cassert>
 
 #include"Node.h"
+#include"function.h"
+#include"BusStation.h"
 
 using namespace std;
 
@@ -28,9 +30,14 @@ public:
 	size_t length() const;
 	void clear();
 	void print() const;
+	void print(int x, int y) const;
+	void printLast10(int x, int y) const;
 
 	void ring();
 
+	void for_each(void(*method)(T&));
+
+	void superMethod();
 
 };
 
@@ -128,6 +135,49 @@ void Queue<T>::print() const
 }
 
 template<class T>
+void Queue<T>::print(int x, int y) const
+{
+	Node<T>* temp = first;
+	while (temp)
+	{
+		gotoxy(x, y);
+		cout << temp->value << endl;
+		temp = temp->next;
+		y++;
+	}
+	cout << endl;
+}
+
+template<class T>
+inline void Queue<T>::printLast10(int x, int y) const
+{
+	Node<T>* temp = first;
+	if (size <= 10)
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			gotoxy(x, y + i);
+			cout << temp->value << endl;
+			temp = temp->next;
+		}
+	}
+	else
+	{
+		gotoxy(x, y);
+		cout << "     ****** ^ ******";
+		for (size_t i = 0; i < size; i++)
+		{
+			if (i > size - 10 && i < size)
+			{
+				gotoxy(x, y + i - size + 10);
+				cout << temp->value << endl;
+			}
+			temp = temp->next;
+		}
+	}
+}
+
+template<class T>
 void Queue<T>::ring()
 {
 	/*enqueue(first->value);
@@ -138,6 +188,35 @@ void Queue<T>::ring()
 	last->next = temp;
 	last = temp;
 	last->next = nullptr;
+}
+
+template<class T>
+void Queue<T>::for_each(void(*method)(T&))
+{
+	Node<T>* temp = first;
+	while (temp)
+	{
+		method(temp->value);
+		temp = temp->next;
+	}
+	cout << endl;
+}
+
+template<class T>
+void Queue<T>::superMethod()
+{
+}
+
+template<>
+void Queue<Passenger>::superMethod()
+{
+	Node<Passenger>* temp = first;
+	while (temp)
+	{
+		temp->value.incrTime();
+		temp = temp->next;
+	}
+	cout << endl;
 }
 
 
@@ -168,6 +247,7 @@ public:
 	size_t length() const;
 	void clear();
 	void print() const;
+	void print(int x, int y) const;
 };
 
 template<class T, class TPri>
@@ -275,8 +355,22 @@ void PriorityQueue<T, TPri>::print() const
 	Node<T, TPri>* temp = first;
 	while (temp)
 	{
-		cout << temp->value << " ";
+		cout << temp->value << endl;
 		temp = temp->next;
+	}
+	cout << endl;
+}
+
+template<class T, class TPri>
+void PriorityQueue<T, TPri>::print(int x, int y) const
+{
+	Node<T, TPri>* temp = first;
+	while (temp)
+	{
+		gotoxy(x, y);
+		cout << temp->value << endl;
+		temp = temp->next;
+		y++;
 	}
 	cout << endl;
 }

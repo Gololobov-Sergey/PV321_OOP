@@ -13,14 +13,9 @@
 #include"Calc.h"
 #include"Queue.h"
 #include"PrintServer.h"
+#include"BusStation.h"
 
 using namespace std;
-
-void SetColor(int text, int background)
-{
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (WORD)((background << 4) | text));
-}
-
 
 void lucky()
 {
@@ -64,6 +59,12 @@ public:
 };
 
 
+void IncTime(Passenger& p)
+{
+	p.incrTime();
+}
+
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -71,6 +72,24 @@ int main()
 	cout.setf(ios::boolalpha);
 
 	//lucky();
+
+
+
+	/*Queue<Passenger> q;
+	q.enqueue(Passenger());
+	q.enqueue(Passenger());
+	q.enqueue(Passenger());
+	q.enqueue(Passenger());
+	q.enqueue(Passenger());
+	q.enqueue(Passenger());
+	q.print();
+	q.for_each(IncTime);
+	q.print();
+	q.superMethod();
+	q.print();*/
+
+
+
 
 	string fn[] = { "file1.xtx", "file2.xls", "file3.doc", "file4.ppt", "file5.pdf" };
 
@@ -80,7 +99,7 @@ int main()
 	int i = 0;
 	while (true)
 	{
-		if (i % 6 == 0)
+		if (i % 5 == 0)
 		{
 			ps.addTaskPrint(
 				TaskPrint(fn[rand() % 5],
