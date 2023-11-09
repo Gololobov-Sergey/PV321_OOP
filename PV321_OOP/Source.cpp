@@ -14,6 +14,7 @@
 #include"Queue.h"
 #include"PrintServer.h"
 #include"BusStation.h"
+#include"ForwardList.h"
 
 using namespace std;
 
@@ -71,9 +72,50 @@ int main()
 	SetConsoleOutputCP(1251);
 	cout.setf(ios::boolalpha);
 
-	//lucky();
+	lucky();
 
 
+	//////// 09.11.2023  /////////
+
+
+	ForwardList<int> fl = { 1,2,3 };
+	cout << fl << endl;
+	fl.push_back(44);
+	cout << fl << endl;
+	fl.push_front(55);
+	cout << fl << endl;
+	fl.insert(66, 2);
+	cout << fl << endl;
+
+	fl.pop_back();
+	fl.pop_front();
+	cout << fl << endl;
+	fl.remove(2);
+	cout << fl << endl;
+
+	{
+		ForwardList<int> fl1;
+		fl1 = fl;
+		cout << fl1 << endl;
+	}
+
+	cout << fl << endl;
+
+	ForwardList<int> fl1 = { 4,5,6 };
+	ForwardList<int> fl3 = fl + fl1;
+	cout << "-----" << endl;
+	cout << fl<< endl;
+	cout << fl1<< endl;
+	cout << fl3<< endl;
+
+	fl += fl1;
+	cout << "-----" << endl;
+	cout << fl << endl;
+	cout << fl1 << endl;
+	cout << fl3 << endl;
+
+
+	//////// 08.11.2023  /////////
 
 	/*Queue<Passenger> q;
 	q.enqueue(Passenger());
@@ -91,7 +133,9 @@ int main()
 
 
 
-	string fn[] = { "file1.xtx", "file2.xls", "file3.doc", "file4.ppt", "file5.pdf" };
+	
+
+	/*string fn[] = { "file1.xtx", "file2.xls", "file3.doc", "file4.ppt", "file5.pdf" };
 
 
 	PrintServer ps("192.168.0.201");
@@ -109,7 +153,7 @@ int main()
 		ps.work();
 		i++;
 		Sleep(1000);
-	}
+	}*/
 
 
 	//////// 07.11.2023  /////////

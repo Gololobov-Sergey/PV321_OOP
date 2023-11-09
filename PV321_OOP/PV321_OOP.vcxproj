@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="Calc.h" />
+    <ClInclude Include="ForwardList.h" />
     <ClInclude Include="Fraction.h" />
     <ClInclude Include="Friend.h" />
     <ClInclude Include="function.h" />
