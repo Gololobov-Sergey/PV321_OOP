@@ -23,7 +23,7 @@ class List
 	Node<T>*  last = nullptr;
 	size_t    size = 0;
 
-	Node<T>* getNode(size_t index);
+	Node<T>* getNode(size_t index) const;
 
 public:
 	List();
@@ -61,7 +61,7 @@ public:
 };
 
 template<class T>
-Node<T>* List<T>::getNode(size_t index)
+Node<T>* List<T>::getNode(size_t index) const
 {
 	Node<T>* pos;
 	if (index < size / 2)
@@ -164,6 +164,98 @@ void List<T>::insert(const T& value, size_t index)
 }
 
 template<class T>
+void List<T>::pop_front()
+{
+	if (size == 0) 
+	{
+		return;
+	}
+
+	if (size == 1)
+	{
+		delete first;
+		first = last = nullptr;
+	}
+	else
+	{
+		first = first->next;
+		delete first->prev;
+		first->prev = nullptr;
+	}
+	size--;
+}
+
+template<class T>
+void List<T>::pop_back()
+{
+	if (size == 0)
+	{
+		return;
+	}
+
+	if (size == 1)
+	{
+		delete first;
+		first = last = nullptr;
+	}
+	else
+	{
+		last = last->prev;
+		delete last->next;
+		last->next = nullptr;
+	}
+}
+
+template<class T>
+void List<T>::remove(size_t index)
+{
+	assert(index >= 0 && index < size);
+	if (index == 0)
+	{
+		this->pop_front();
+	}
+	else if (index == size - 1)
+	{
+		this->pop_back();
+	}
+	else
+	{
+		Node<T>* temp = this->getNode(index + 1);
+		temp->next->prev = temp->prev;
+		temp->prev->next = temp->next;
+		delete temp;
+		size--;
+	}
+}
+
+template<class T>
+T& List<T>::front()
+{
+	assert(size > 0);
+	return first->value;
+}
+
+template<class T>
+T& List<T>::back()
+{
+	assert(size > 0);
+	return last->value;
+}
+
+template<class T>
+T& List<T>::at(size_t index) const
+{
+	assert(size > 0);
+	return this->getNode(index + 1)->value;
+}
+
+template<class T>
+T& List<T>::operator[](size_t index) const
+{
+	return this->at(index);
+}
+
+template<class T>
 void List<T>::clear()
 {
 	Node<T>* temp = first;
@@ -177,8 +269,72 @@ void List<T>::clear()
 }
 
 template<class T>
+inline size_t List<T>::length() const
+{
+	return size;
+}
+
+template<class T>
+bool List<T>::isEmpty() const
+{
+	return size == 0;
+}
+
+template<class T>
 void List<T>::printReverse() const
 {
+	Node<T>* temp = last;
+	while (temp)
+	{
+		cout << temp->value << " ";
+		temp = temp->prev;
+	}
+	cout << endl;
+}
+
+template<class T>
+void List<T>::unique()
+{
+	/*for (size_t i = 0; i < size; i++)
+	{
+		for (size_t j = i + 1; j < size; j++)
+		{
+			if (this->operator[](i) == this->operator[](j)) 
+			{
+				this->remove(j);
+				j--;
+			}
+		}
+	}*/
+
+	Node<T>* current = first;
+	while (current)
+	{
+		Node<T>* beg = current;
+		while (beg)
+		{
+			if (beg->next != nullptr)
+			{
+				if (current->value == beg->next->value)
+				{
+					Node<T>* del = beg->next;
+					beg->next = beg->next->next;
+					delete del;
+					size--;
+				}
+				else
+				{
+					beg = beg->next;
+				}
+			}
+			else
+			{
+				last = beg;
+				break;
+			}
+		}
+		current = current->next;
+	}
 
 }
 
@@ -188,7 +344,7 @@ ostream& operator<<(ostream& out, const List<T>& list)
 	Node<T>* temp = list.first;
 	while (temp)
 	{
-		cout << temp->value << " ";
+		out << temp->value << " ";
 		temp = temp->next;
 	}
 	return out;

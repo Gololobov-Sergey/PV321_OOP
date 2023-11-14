@@ -16,6 +16,7 @@
 #include"BusStation.h"
 #include"ForwardList.h"
 #include"List.h"
+#include"Timer.h"
 
 using namespace std;
 
@@ -80,12 +81,32 @@ int main()
 	//////// 14.11.2023  /////////
 
 
-	List<int> l = { 1,2,3 };
-	l.push_back(10);
-	l.push_front(20);
-	cout << l << endl;
-	l.insert(99, 6);
-	cout << l << endl;
+	List<int> l;
+	for (size_t i = 0; i < 1000; i++)
+	{
+		l.push_back(rand() % 100);
+	}
+	//l.push_back(10);
+	//l.push_front(20);
+	//cout << l << endl;
+	//l.insert(99, 4);
+	//cout << l << endl;
+	//l.printReverse();
+	////l.pop_back();
+	////l.pop_front();
+	//l.remove(3);
+	//cout << l << endl;
+	//l.printReverse();
+	//for (size_t i = 0; i < l.length(); i++)
+	//{
+	//	cout << l[i] << " ";
+	//}
+	//cout << endl;
+	//cout << l << endl;
+	Timer t;
+	l.unique();
+	cout << t.elapsed() << endl;
+	//cout << l << endl;
 
 
 	//////// 09.11.2023  /////////
