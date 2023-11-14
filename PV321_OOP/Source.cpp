@@ -15,6 +15,7 @@
 #include"PrintServer.h"
 #include"BusStation.h"
 #include"ForwardList.h"
+#include"List.h"
 
 using namespace std;
 
@@ -75,10 +76,22 @@ int main()
 	lucky();
 
 
+
+	//////// 14.11.2023  /////////
+
+
+	List<int> l = { 1,2,3 };
+	l.push_back(10);
+	l.push_front(20);
+	cout << l << endl;
+	l.insert(99, 6);
+	cout << l << endl;
+
+
 	//////// 09.11.2023  /////////
 
 
-	ForwardList<int> fl = { 1,2,3 };
+	/*ForwardList<int> fl = { 1,2,3 };
 	cout << fl << endl;
 	fl.push_back(44);
 	cout << fl << endl;
@@ -112,7 +125,7 @@ int main()
 	cout << "-----" << endl;
 	cout << fl << endl;
 	cout << fl1 << endl;
-	cout << fl3 << endl;
+	cout << fl3 << endl;*/
 
 
 	//////// 08.11.2023  /////////

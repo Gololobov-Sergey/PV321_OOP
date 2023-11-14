@@ -138,6 +138,7 @@
     <ClInclude Include="Fraction.h" />
     <ClInclude Include="Friend.h" />
     <ClInclude Include="function.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PrintServer.h" />
