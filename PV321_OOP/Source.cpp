@@ -17,6 +17,7 @@
 #include"ForwardList.h"
 #include"List.h"
 #include"Timer.h"
+#include"BTree.h"
 
 using namespace std;
 
@@ -76,16 +77,27 @@ int main()
 
 	lucky();
 
+	//////// 15.11.2023  /////////
 
+
+	BTree<int, int> b;
+	cout << b.push(10, 10) << endl;
+	cout << b.push(5, 5) << endl;
+	cout << b.push(20, 20) << endl;
+	cout << b.push(20, 20) << endl;
+	cout << b.push(8, 8) << endl;
+	cout << b.push(15, 15) << endl;
+	cout << b.push(1, 1) << endl;
+	b.print();
 
 	//////// 14.11.2023  /////////
 
 
-	List<int> l;
+	/*List<int> l;
 	for (size_t i = 0; i < 1000; i++)
 	{
 		l.push_back(rand() % 100);
-	}
+	}*/
 	//l.push_back(10);
 	//l.push_front(20);
 	//cout << l << endl;
@@ -103,9 +115,9 @@ int main()
 	//}
 	//cout << endl;
 	//cout << l << endl;
-	Timer t;
-	l.unique();
-	cout << t.elapsed() << endl;
+	//Timer t;
+	//l.unique();
+	//cout << t.elapsed() << endl;
 	//cout << l << endl;
 
 
