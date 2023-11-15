@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include<iostream>
 #include<cassert>
 
@@ -44,6 +44,9 @@ class BTree
 {
 	BTreeNode<TKey, TVal>* root = nullptr;
 
+	BTreeNode<TKey, TVal>* push_r(const TKey& key, const TVal& val, BTreeNode<TKey, TVal>*& node);
+	BTreeNode<TKey, TVal>* remove(const TKey& key, BTreeNode<TKey, TVal>*& node);
+
 public:
 	~BTree();
 	void print();
@@ -51,8 +54,68 @@ public:
 	bool push(const TKey& key, const TVal& val);
 	bool push_r(const TKey& key, const TVal& val);
 	bool remove(const TKey& key);
-
+	TVal* getValue(const TKey& key);
 };
+
+template<class TKey, class TVal>
+BTreeNode<TKey, TVal>* BTree<TKey, TVal>::push_r(const TKey& key, const TVal& val, BTreeNode<TKey, TVal>*& node)
+{
+	if (!node)
+	{
+		node = new BTreeNode<TKey, TVal>(key, val);
+		return node;
+	}
+	if (key < node->key)
+		node->left = push_r(key, val, node->left);
+	else if (key > node->key)
+		node->right = push_r(key, val, node->right);
+	return node;
+}
+
+template<class TKey, class TVal>
+BTreeNode<TKey, TVal>* BTree<TKey, TVal>::remove(const TKey& key, BTreeNode<TKey, TVal>*& node)
+{
+	BTreeNode<TKey, TVal>* tmp; //запоминаем найденный узел
+	BTreeNode<TKey, TVal>* next;
+	if (!node)
+		cout << "Item not found";
+	else
+		if (key < node->key) //искомое меньше
+			node->left = remove(key, node->left);        //идем по левому плечу
+		else
+			if (key > node->key) //искомое больше
+				node->right = remove(key, node->right);  //идем по правому плечу
+			else
+			{
+				tmp = node;            //запоминаем найденный узел
+				if (!node->right)
+					node = node->left; //случай 1
+				else if (!node->left)
+					node = node->right; //случай 1
+				else
+				{   //случай 2
+					next = node->left; //выбираем левую ветку
+					if (next->right) { //правая ветка не пуста
+						while (next->right->right)
+							next = next->right;
+						//перемещаемся до последнего справа
+						node->key = next->right->key;
+						node->value = next->right->value;
+						//записываем значение
+						tmp = next->right; //этот узел удалить
+						next->right = next->right->left; //присоединить
+					}
+					else
+					{//дальше нету веток
+						node->key = next->key;
+						tmp = next; //этот узел удалить
+						node->left = node->left->left;
+					}
+				}
+				delete tmp;
+			}
+	return node;
+}
 
 template<class TKey, class TVal>
 BTree<TKey, TVal>::~BTree()
@@ -115,4 +178,24 @@ bool BTree<TKey, TVal>::push(const TKey& key, const TVal& val)
 			return false;
 		}
 	} while (true);
+}
+
+template<class TKey, class TVal>
+bool BTree<TKey, TVal>::push_r(const TKey& key, const TVal& val)
+{
+	return push_r(key, val, root);
+}
+
+template<class TKey, class TVal>
+bool BTree<TKey, TVal>::remove(const TKey& key)
+{
+	return remove(key, root);
+}
+
+template<class TKey, class TVal>
+TVal* BTree<TKey, TVal>::getValue(const TKey& key)
+{
+	if (root)
+		return root->getValue(key);
+	return nullptr;
 }

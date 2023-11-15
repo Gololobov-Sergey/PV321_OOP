@@ -104,6 +104,23 @@ List<T>::~List()
 }
 
 template<class T>
+inline List<T>::List(const List<T>& fl)
+{
+	Node<T>* temp = fl.first;
+	for (size_t i = 0; i < fl.size; i++)
+	{
+		this->push_back(temp->value);
+		temp = temp->next;
+	}
+}
+
+template<class T>
+inline List<T>& List<T>::operator=(const List<T>& fl)
+{
+	// TODO: вставьте здесь оператор return
+}
+
+template<class T>
 void List<T>::push_front(const T& value)
 {
 	if (size == 0)
@@ -344,8 +361,9 @@ ostream& operator<<(ostream& out, const List<T>& list)
 	Node<T>* temp = list.first;
 	while (temp)
 	{
-		out << temp->value << " ";
+		out << temp->value;
 		temp = temp->next;
 	}
+	cout << endl;
 	return out;
 }

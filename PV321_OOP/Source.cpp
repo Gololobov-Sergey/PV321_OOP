@@ -18,6 +18,7 @@
 #include"List.h"
 #include"Timer.h"
 #include"BTree.h"
+#include"BasePolice.h"
 
 using namespace std;
 
@@ -79,16 +80,25 @@ int main()
 
 	//////// 15.11.2023  /////////
 
+	BasePolice base;
+	base.addProtocol();
+	base.addProtocol();
+	base.printAll();
+	base.addProtocol();
+	base.addProtocol();
+	base.printAll();
 
-	BTree<int, int> b;
-	cout << b.push(10, 10) << endl;
-	cout << b.push(5, 5) << endl;
-	cout << b.push(20, 20) << endl;
-	cout << b.push(20, 20) << endl;
-	cout << b.push(8, 8) << endl;
-	cout << b.push(15, 15) << endl;
-	cout << b.push(1, 1) << endl;
+	/*BTree<int, int> b;
+	cout << b.push_r(10, 10) << endl;
+	cout << b.push_r(5, 5) << endl;
+	cout << b.push_r(20, 20) << endl;
+	cout << b.push_r(8, 8) << endl;
+	cout << b.push_r(15, 15) << endl;
+	cout << b.push_r(1, 1) << endl;
 	b.print();
+	cout << endl;
+	b.remove(10);
+	b.print();*/
 
 	//////// 14.11.2023  /////////
 
