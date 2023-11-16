@@ -19,6 +19,8 @@
 #include"Timer.h"
 #include"BTree.h"
 #include"BasePolice.h"
+#include"Relation.h"
+#include"Inherit.h"
 
 using namespace std;
 
@@ -76,17 +78,45 @@ int main()
 	SetConsoleOutputCP(1251);
 	cout.setf(ios::boolalpha);
 
-	lucky();
+	//lucky();
+
+
+	Human h("Serg", 25);
+	h.print();
+
+	FootballPlayer p("Zidan", 50, 1000);
+	p.print();
+
+	Goalkeeper gk("Pyatov", 33, 200, 300);
+	gk.print();
+
+
+	A a;
+	B b;
+	
+	
+
+	/*Composition::Car car;
+	car.move();
+
+	Agrigation::Engine* en = new Agrigation::Engine;
+	Agrigation::Car car1(en);
+	Agrigation::STO sto;
+	sto.set(car1.getEngine());
+	sto.test();
+
+	car1.move();*/
+
 
 	//////// 15.11.2023  /////////
 
-	BasePolice base;
+	/*BasePolice base;
 	base.addProtocol();
 	base.addProtocol();
 	base.printAll();
 	base.addProtocol();
 	base.addProtocol();
-	base.printAll();
+	base.printAll();*/
 
 	/*BTree<int, int> b;
 	cout << b.push_r(10, 10) << endl;
