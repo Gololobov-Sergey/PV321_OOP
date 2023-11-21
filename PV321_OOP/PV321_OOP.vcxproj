@@ -146,6 +146,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="PrintServer.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="Queue2.h" />
     <ClInclude Include="Relation.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StaticArray.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="BusStation.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Zoo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,6 +21,7 @@
 #include"BasePolice.h"
 #include"Relation.h"
 #include"Inherit.h"
+#include"Zoo.h"
 
 using namespace std;
 
@@ -72,6 +73,12 @@ void IncTime(Passenger& p)
 }
 
 
+void Voice(Animal* an)
+{
+	cout << an->voice() << endl;
+}
+
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -81,7 +88,50 @@ int main()
 	//lucky();
 
 
-	Human h("Serg", 25);
+	//////// 21.11.2023  /////////
+
+	{
+		Animal* cat = new Cat("Tom", 5);
+		delete cat;
+	}
+	//cout << cat.getType() << endl;
+	//cout << cat.voice() << endl;
+
+	/*Dog dog("Spike", 3);
+	Animal& an1 = cat;
+	an1.voice();*/
+	/*cout << dog.getType() << endl;
+	cout << dog.voice() << endl;
+
+	Animal& an1 = dog;
+	cout << an1.getType() << endl;
+	cout << an1.voice() << endl;
+
+	Animal* an2 = &dog;
+	cout << an2->getType() << endl;
+	cout << an2->voice() << endl;
+
+	cout << "-------------" << endl;
+
+	SiamCat s_cat("Murzik", 5);
+	Animal* animal[] = { &cat, &dog, &s_cat };
+	for (size_t i = 0; i < 3; i++)
+	{
+		cout << animal[i]->getType() << endl;
+		cout << animal[i]->voice() << endl;
+	}
+	cout << "-------------" << endl;
+
+	Voice(&dog);
+	Voice(&cat);*/
+
+
+	/*WiFiRouter r(123, 456);
+	cout << r.WiFi::getID() << endl;
+	cout << r.Router::getID() << endl;*/
+
+
+	/*Human h("Serg", 25);
 	h.print();
 
 	FootballPlayer p("Zidan", 50, 1000);
@@ -92,7 +142,7 @@ int main()
 
 
 	A a;
-	B b;
+	B b;*/
 	
 	
 

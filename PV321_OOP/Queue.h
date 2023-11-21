@@ -9,21 +9,25 @@
 
 using namespace std;
 
-template<class T>
-class Queue
+
+
+
+
+template<class T, class TPri = int>
+class BaseQueue
 {
-	Node<T>* first = nullptr;
-	Node<T>* last  = nullptr;
+	Node<T, TPri>* first = nullptr;
+	Node<T, TPri>* last  = nullptr;
 	size_t   size  = 0;
 
 public:
-	Queue();
-	Queue(initializer_list<T> list);
-	~Queue();
-	Queue(const Queue<T>& q);
-	Queue& operator=(const Queue<T>& q);
-	Queue operator+(const Queue<T>& q);
-	void enqueue(const T& value);
+	BaseQueue();
+	BaseQueue(initializer_list<T> list);
+	~BaseQueue();
+	BaseQueue(const BaseQueue<T, TPri>& q);
+	BaseQueue<T, TPri>& operator=(const BaseQueue<T, TPri>& q);
+	BaseQueue<T, TPri> operator+(const BaseQueue<T, TPri>& q);
+	void enqueue(const T& value, const TPri& priority = TPri());
 	void dequeue();
 	T peek();
 	bool isEmpty() const;
@@ -33,21 +37,19 @@ public:
 	void print(int x, int y) const;
 	void printLast10(int x, int y) const;
 
-	void ring();
-
 	void for_each(void(*method)(T&));
 
 	void superMethod();
 
 };
 
-template<class T>
-Queue<T>::Queue()
+template<class T, class TPri>
+BaseQueue<T, TPri>::BaseQueue()
 {
 }
 
-template<class T>
-Queue<T>::Queue(initializer_list<T> list)
+template<class T, class TPri>
+BaseQueue<T, TPri>::BaseQueue(initializer_list<T> list)
 {
 	for (T elem : list)
 	{
@@ -55,33 +57,33 @@ Queue<T>::Queue(initializer_list<T> list)
 	}
 }
 
-template<class T>
-Queue<T>::~Queue()
+template<class T, class TPri>
+BaseQueue<T, TPri>::~BaseQueue()
 {
 	this->clear();
 }
 
-template<class T>
-void Queue<T>::enqueue(const T& value)
-{
-	if (size == 0)
-	{
-		first = last = new Node<T>(value);
-	}
-	else
-	{
-		last->next = new Node<T>(value);
-		last = last->next;
-	}
-	size++;
-}
+//template<class T, class TPri>
+//void BaseQueue<T, TPri>::enqueue(const T& value)
+//{
+//	if (size == 0)
+//	{
+//		first = last = new Node<T, TPri>(value);
+//	}
+//	else
+//	{
+//		last->next = new Node<T, TPri>(value);
+//		last = last->next;
+//	}
+//	size++;
+//}
 
-template<class T>
-void Queue<T>::dequeue()
+template<class T, class TPri>
+void BaseQueue<T, TPri>::dequeue()
 {
 	if (size > 0)
 	{
-		Node<T>* temp = first;
+		Node<T, TPri>* temp = first;
 		first = first->next;
 		delete temp;
 		size--;
@@ -89,29 +91,29 @@ void Queue<T>::dequeue()
 	}
 }
 
-template<class T>
-T Queue<T>::peek()
+template<class T, class TPri>
+T BaseQueue<T, TPri>::peek()
 {
 	assert(size > 0);
 	return first->value;
 }
 
-template<class T>
-bool Queue<T>::isEmpty() const
+template<class T, class TPri>
+bool BaseQueue<T, TPri>::isEmpty() const
 {
 	return size == 0;
 }
 
-template<class T>
-size_t Queue<T>::length() const
+template<class T, class TPri>
+size_t BaseQueue<T, TPri>::length() const
 {
 	return size;
 }
 
-template<class T>
-void Queue<T>::clear()
+template<class T, class TPri>
+void BaseQueue<T, TPri>::clear()
 {
-	Node<T>* temp = first;
+	Node<T, TPri>* temp = first;
 	while (temp)
 	{
 		first = first->next;
@@ -121,10 +123,10 @@ void Queue<T>::clear()
 	size = 0;
 }
 
-template<class T>
-void Queue<T>::print() const
+template<class T, class TPri>
+void BaseQueue<T, TPri>::print() const
 {
-	Node<T>* temp = first;
+	Node<T, TPri>* temp = first;
 	while (temp)
 	{
 		cout << temp->value << endl;
@@ -134,10 +136,10 @@ void Queue<T>::print() const
 	
 }
 
-template<class T>
-void Queue<T>::print(int x, int y) const
+template<class T, class TPri>
+void BaseQueue<T, TPri>::print(int x, int y) const
 {
-	Node<T>* temp = first;
+	Node<T, TPri>* temp = first;
 	while (temp)
 	{
 		gotoxy(x, y);
@@ -148,10 +150,10 @@ void Queue<T>::print(int x, int y) const
 	cout << endl;
 }
 
-template<class T>
-inline void Queue<T>::printLast10(int x, int y) const
+template<class T, class TPri>
+inline void BaseQueue<T, TPri>::printLast10(int x, int y) const
 {
-	Node<T>* temp = first;
+	Node<T, TPri>* temp = first;
 	if (size <= 10)
 	{
 		for (size_t i = 0; i < size; i++)
@@ -177,23 +179,23 @@ inline void Queue<T>::printLast10(int x, int y) const
 	}
 }
 
-template<class T>
-void Queue<T>::ring()
-{
-	/*enqueue(first->value);
-	dequeue();*/
+//template<class T, class TPri>
+//void BaseQueue<T, TPri>::ring()
+//{
+//	/*enqueue(first->value);
+//	dequeue();*/
+//
+//	Node<T, TPri>* temp = first;
+//	first = first->next;
+//	last->next = temp;
+//	last = temp;
+//	last->next = nullptr;
+//}
 
-	Node<T>* temp = first;
-	first = first->next;
-	last->next = temp;
-	last = temp;
-	last->next = nullptr;
-}
-
-template<class T>
-void Queue<T>::for_each(void(*method)(T&))
+template<class T, class TPri>
+void BaseQueue<T, TPri>::for_each(void(*method)(T&))
 {
-	Node<T>* temp = first;
+	Node<T, TPri>* temp = first;
 	while (temp)
 	{
 		method(temp->value);
@@ -202,13 +204,13 @@ void Queue<T>::for_each(void(*method)(T&))
 	cout << endl;
 }
 
-template<class T>
-void Queue<T>::superMethod()
+template<class T, class TPri>
+void BaseQueue<T, TPri>::superMethod()
 {
 }
 
 template<>
-void Queue<Passenger>::superMethod()
+void BaseQueue<Passenger>::superMethod()
 {
 	Node<Passenger>* temp = first;
 	while (temp)

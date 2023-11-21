@@ -112,3 +112,40 @@ public:
 		//a_3();
 	}
 };
+
+
+class Device
+{
+
+};
+
+
+
+class WiFi : public Device
+{
+	int id;
+	//
+
+public:
+	WiFi(int id): id(id){ }
+	int getID() { return id; }
+	//
+};
+
+class Router : public Device
+{
+	int id;
+	//
+
+public:
+	Router(int id) : id(id) { }
+	int getID() { return id; }
+	//
+};
+
+class WiFiRouter : public WiFi, public Router
+{
+
+public:
+	WiFiRouter(int idWiFi, int idRouter) : WiFi(idWiFi), Router(idRouter) {	}
+};
