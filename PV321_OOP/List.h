@@ -362,6 +362,7 @@ ostream& operator<<(ostream& out, const List<T>& list)
 	while (temp)
 	{
 		out << temp->value;
+		//temp->value->print();
 		temp = temp->next;
 	}
 	cout << endl;

@@ -22,6 +22,7 @@
 #include"Relation.h"
 #include"Inherit.h"
 #include"Zoo.h"
+#include"WarOfWorld.h"
 
 using namespace std;
 
@@ -107,11 +108,16 @@ int main()
 
 	//////// 22.11.2023  /////////
 
-	LogErrorFile log("log.txt");
+	WarOfWorld war(10);
+	war.game();
+
+
+
+	/*LogErrorFile log("log.txt");
 	cout << division(45, 0, log) << endl;
 
 	LogErrorConsole logC;
-	cout << division(45, 5, logC) << endl;
+	cout << division(45, 5, logC) << endl;*/
 
 	/*Animal a("???", 0);
 	cout << a.getType() << endl;
