@@ -155,6 +155,7 @@
     <ClInclude Include="Time.h" />
     <ClInclude Include="BusStation.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="WarOfWorld.h" />
     <ClInclude Include="Zoo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -79,6 +79,24 @@ void Voice(Animal* an)
 }
 
 
+void PrintDisplay(IPrintable* p)
+{
+	p->print();
+}
+
+
+double division(int a, int b, ILogError& log)
+{
+	if (b == 0)
+	{
+		log.writeError("Division by zero!");
+		return 0;
+	}
+	log.writeError("Operation compleat!");
+	return a / b;
+}
+
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -87,13 +105,37 @@ int main()
 
 	//lucky();
 
+	//////// 22.11.2023  /////////
+
+	LogErrorFile log("log.txt");
+	cout << division(45, 0, log) << endl;
+
+	LogErrorConsole logC;
+	cout << division(45, 5, logC) << endl;
+
+	/*Animal a("???", 0);
+	cout << a.getType() << endl;
+	cout << a.voice() << endl;*/
+
+	/*Cat* cat = new Cat("Tom", 5);
+	cout << cat->voice() << endl;
+
+	PrintDisplay(cat);
+
+
+	Dog dog("Spike", 3);
+	PrintDisplay(&dog);*/
+
+	//delete cat;
+
+	
 
 	//////// 21.11.2023  /////////
 
-	{
+	/*{
 		Animal* cat = new Cat("Tom", 5);
 		delete cat;
-	}
+	}*/
 	//cout << cat.getType() << endl;
 	//cout << cat.voice() << endl;
 
@@ -266,10 +308,6 @@ int main()
 	q.superMethod();
 	q.print();*/
 
-
-
-
-	
 
 	/*string fn[] = { "file1.xtx", "file2.xls", "file3.doc", "file4.ppt", "file5.pdf" };
 

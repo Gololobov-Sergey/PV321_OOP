@@ -10,24 +10,22 @@
 using namespace std;
 
 
-
-
-
 template<class T, class TPri = int>
 class BaseQueue
 {
+protected:
 	Node<T, TPri>* first = nullptr;
-	Node<T, TPri>* last  = nullptr;
-	size_t   size  = 0;
+	Node<T, TPri>* last = nullptr;
+	size_t   size = 0;
 
 public:
 	BaseQueue();
 	BaseQueue(initializer_list<T> list);
-	~BaseQueue();
+	virtual ~BaseQueue();
 	BaseQueue(const BaseQueue<T, TPri>& q);
 	BaseQueue<T, TPri>& operator=(const BaseQueue<T, TPri>& q);
 	BaseQueue<T, TPri> operator+(const BaseQueue<T, TPri>& q);
-	void enqueue(const T& value, const TPri& priority = TPri());
+	virtual void enqueue(const T& value, const TPri& priority = TPri()) = 0;
 	void dequeue();
 	T peek();
 	bool isEmpty() const;
@@ -77,6 +75,11 @@ BaseQueue<T, TPri>::~BaseQueue()
 //	}
 //	size++;
 //}
+
+template<class T, class TPri>
+void BaseQueue<T, TPri>::enqueue(const T& value, const TPri& priority)
+{
+}
 
 template<class T, class TPri>
 void BaseQueue<T, TPri>::dequeue()
@@ -133,7 +136,7 @@ void BaseQueue<T, TPri>::print() const
 		temp = temp->next;
 	}
 	cout << endl;
-	
+
 }
 
 template<class T, class TPri>
@@ -179,18 +182,6 @@ inline void BaseQueue<T, TPri>::printLast10(int x, int y) const
 	}
 }
 
-//template<class T, class TPri>
-//void BaseQueue<T, TPri>::ring()
-//{
-//	/*enqueue(first->value);
-//	dequeue();*/
-//
-//	Node<T, TPri>* temp = first;
-//	first = first->next;
-//	last->next = temp;
-//	last = temp;
-//	last->next = nullptr;
-//}
 
 template<class T, class TPri>
 void BaseQueue<T, TPri>::for_each(void(*method)(T&))
@@ -224,78 +215,90 @@ void BaseQueue<Passenger>::superMethod()
 
 ///////////////////////
 ///                  //
+///       QUEUE      //
+///                  //
+///////////////////////
+
+template<class T, class TPri = int>
+class Queue : public BaseQueue<T, TPri>
+{
+
+public:
+
+	virtual void enqueue(const T& value, const TPri& priority = TPri()) override;
+	void ring();
+};
+
+
+template<class T, class TPri>
+void Queue<T, TPri>::enqueue(const T& value, const TPri& priority)
+{
+	if (this->size == 0)
+	{
+		this->first = this->last = new Node<T, TPri>(value);
+	}
+	else
+	{
+		this->last->next = new Node<T, TPri>(value);
+		this->last = this->last->next;
+	}
+	this->size++;
+}
+
+template<class T, class TPri>
+inline void Queue<T, TPri>::ring()
+{
+	/*enqueue(first->value);
+dequeue();*/
+
+	Node<T, TPri>* temp = this->first;
+	this->first = this->first->next;
+	this->last->next = temp;
+	this->last = temp;
+	this->last->next = nullptr;
+}
+
+///////////////////////
+///                  //
 /// PRIORITY QUEUE   //
 ///                  //
 ///////////////////////
 
 template<class T, class TPri = int>
-class PriorityQueue
+class PriorityQueue : public BaseQueue<T, TPri>
 {
-	Node<T, TPri>* first = nullptr;
-	Node<T, TPri>* last = nullptr;
-	size_t   size = 0;
 
 public:
-	PriorityQueue();
-	PriorityQueue(initializer_list<T> list);
-	~PriorityQueue();
-	PriorityQueue(const PriorityQueue<T, TPri>& q);
-	PriorityQueue& operator=(const PriorityQueue<T, TPri>& q);
-	PriorityQueue operator+(const PriorityQueue<T, TPri>& q);
-	void enqueue(const T& value, const TPri& priority);
-	void dequeue();
-	T peek();
-	bool isEmpty() const;
-	size_t length() const;
-	void clear();
-	void print() const;
-	void print(int x, int y) const;
+
+	virtual void enqueue(const T& value, const TPri& priority) override;
+
 };
 
-template<class T, class TPri>
-PriorityQueue<T, TPri>::PriorityQueue()
-{
-}
-
-template<class T, class TPri>
-PriorityQueue<T, TPri>::PriorityQueue(initializer_list<T> list)
-{
-	for (T elem : list)
-	{
-		enqueue(elem, TPri());
-	}
-}
-
-template<class T, class TPri>
-PriorityQueue<T, TPri>::~PriorityQueue()
-{
-	clear();
-}
 
 template<class T, class TPri>
 void PriorityQueue<T, TPri>::enqueue(const T& value, const TPri& priority)
 {
 	Node<T, TPri>* newNode = new Node<T, TPri>(value, priority);
-	if (size == 0)
+	if (this->size == 0)
 	{
-		last = first = newNode;
-		size++;
+		this->last = this->first = newNode;
+		this->size++;
 		return;
 	}
 
-	if (priority <= last->priority)
+	if (priority <= this->last->priority)
 	{
-		last->next = newNode;
-		last = newNode;
+		this->last->next = newNode;
+		this->last = newNode;
 	}
-	else if (priority > first->priority)
+	else if (priority > this->first->priority)
 	{
-		newNode->next = first;
-		first = newNode;
+		newNode->next = this->first;
+		this->first = newNode;
 	}
 	else
 	{
-		Node<T, TPri>* temp = first;
+		Node<T, TPri>* temp = this->first;
 		while (priority <= temp->next->priority)
 		{
 			temp = temp->next;
@@ -303,76 +306,8 @@ void PriorityQueue<T, TPri>::enqueue(const T& value, const TPri& priority)
 		newNode->next = temp->next;
 		temp->next = newNode;
 	}
-	size++;
+	this->size++;
 }
 
-template<class T, class TPri>
-void PriorityQueue<T, TPri>::dequeue()
-{
-	if (size > 0)
-	{
-		Node<T, TPri>* temp = first;
-		first = first->next;
-		delete temp;
-		size--;
-		last = (size == 0) ? nullptr : last;  // ???
-	}
-}
 
-template<class T, class TPri>
-T PriorityQueue<T, TPri>::peek()
-{
-	assert(size > 0);
-	return first->value;
-}
 
-template<class T, class TPri>
-bool PriorityQueue<T, TPri>::isEmpty() const
-{
-	return size == 0;
-}
-
-template<class T, class TPri>
-size_t PriorityQueue<T, TPri>::length() const
-{
-	return size;
-}
-
-template<class T, class TPri>
-void PriorityQueue<T, TPri>::clear()
-{
-	Node<T, TPri>* temp = first;
-	while (temp)
-	{
-		first = first->next;
-		delete temp;
-		temp = first;
-	}
-	size = 0;
-}
-
-template<class T, class TPri>
-void PriorityQueue<T, TPri>::print() const
-{
-	Node<T, TPri>* temp = first;
-	while (temp)
-	{
-		cout << temp->value << endl;
-		temp = temp->next;
-	}
-	cout << endl;
-}
-
-template<class T, class TPri>
-void PriorityQueue<T, TPri>::print(int x, int y) const
-{
-	Node<T, TPri>* temp = first;
-	while (temp)
-	{
-		gotoxy(x, y);
-		cout << temp->value << endl;
-		temp = temp->next;
-		y++;
-	}
-	cout << endl;
-}
