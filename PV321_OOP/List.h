@@ -5,6 +5,7 @@
 
 #include"Node.h"
 
+#define NOT_FOUND -1
 
 using namespace std;
 
@@ -58,6 +59,8 @@ public:
 
 	void unique();
 	void swap(List<T>& list);
+
+	int find(const T& value);
 };
 
 template<class T>
@@ -353,6 +356,14 @@ void List<T>::unique()
 		current = current->next;
 	}
 
+}
+
+template<class T>
+inline int List<T>::find(const T& value)
+{
+	//
+
+	return NOT_FOUND;
 }
 
 template<class T>

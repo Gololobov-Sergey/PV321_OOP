@@ -23,6 +23,7 @@
 #include"Inherit.h"
 #include"Zoo.h"
 #include"WarOfWorld.h"
+#include"MyException.h"
 
 using namespace std;
 
@@ -80,6 +81,15 @@ void Voice(Animal* an)
 }
 
 
+void PlayAnimal(Animal* an)
+{
+	cout << an->voice() << endl;
+
+	Cat* c = dynamic_cast<Cat*>(an);
+	if(c)
+		c->catchMouse();
+}
+
 void PrintDisplay(IPrintable* p)
 {
 	p->print();
@@ -97,6 +107,34 @@ double division(int a, int b, ILogError& log)
 	return a / b;
 }
 
+void f3()
+{
+	cout << "Start f3" << endl;
+	throw 1.3;
+	cout << "End f3" << endl;
+}
+
+void f2()
+{
+	cout << "Start f2" << endl;
+	try
+	{
+		f3();
+	}
+	catch (double d)
+	{
+		cout << "Double" << endl;
+	}
+	cout << "End f2" << endl;
+}
+
+void f1()
+{
+	cout << "Start f1" << endl;
+	f2();
+	cout << "End f1" << endl;
+}
+
 
 int main()
 {
@@ -106,10 +144,72 @@ int main()
 
 	//lucky();
 
+
+	//////// 23.11.2023  /////////
+	cout << "Start main" << endl;
+	try
+	{
+
+		//f1();
+
+		int a, b;
+		cin >> a >> b;
+		if (b == 0)
+			throw MyException(__DATE__, __TIME__, __FILE__, __LINE__, "arg b = 0!!");
+		//throw "Error #123";
+		cout << a / b << endl;
+	}
+	catch (int a)
+	{
+		cout << "Error " << a << endl;
+	}
+	catch (const char* st)
+	{
+		cout << "Error - " << st << endl;
+	}
+	catch (MyException& e)
+	{
+		e.saveLog();
+		cout << e.getError() << endl;
+	}
+	catch (...)
+	{
+		cout << "Fatal Error" << endl;
+	}
+	cout << "End main" << endl;
+
+
+
+	/*throw 1.5;
+	throw "Error";
+	throw NOT_FOUND;
+	throw Fraction();*/
+
+
+
+	/*Animal* cat = new Cat("Tom", 5);
+	Animal* dog = new Dog("Patron", 5);
+	PlayAnimal(dog);*/
+
+
+	/*FootballPlayer p("Zidan", 50, 1000);
+	p.print();
+	cout << endl;
+
+	Human h = p;
+	h.print();*/
+
+	/*WiFiRouter r(123, 456);
+	cout << r.WiFi::getID() << endl;
+	cout << r.Router::getID() << endl;
+	cout << r.WiFi::dev << endl;
+	cout << r.Router::dev << endl;*/
+
+
 	//////// 22.11.2023  /////////
 
-	WarOfWorld war(10);
-	war.game();
+	//WarOfWorld war(10);
+	//war.game();
 
 
 

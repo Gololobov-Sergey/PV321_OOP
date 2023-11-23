@@ -26,7 +26,7 @@ public:
 		return name;
 	}
 
-	void print()
+	virtual void print()
 	{
 		cout << "Name   : " << name << endl;
 		cout << "Age    : " << age << endl;
@@ -46,7 +46,7 @@ public:
 		cout << "FP" << endl;
 	}
 
-	void print()
+	virtual void print()
 	{
 		
 		Human::print();
@@ -116,29 +116,30 @@ public:
 
 class Device
 {
+public:
+	int dev;
 
+	Device(int d) :dev(d) {}
 };
 
-
-
-class WiFi : public Device
+class WiFi : virtual public Device
 {
 	int id;
 	//
 
 public:
-	WiFi(int id): id(id){ }
+	WiFi(int id): id(id), Device(500) { }
 	int getID() { return id; }
 	//
 };
 
-class Router : public Device
+class Router : virtual public Device
 {
 	int id;
 	//
 
 public:
-	Router(int id) : id(id) { }
+	Router(int id) : id(id), Device(800) { }
 	int getID() { return id; }
 	//
 };
@@ -147,5 +148,5 @@ class WiFiRouter : public WiFi, public Router
 {
 
 public:
-	WiFiRouter(int idWiFi, int idRouter) : WiFi(idWiFi), Router(idRouter) {	}
+	WiFiRouter(int idWiFi, int idRouter) : WiFi(idWiFi), Router(idRouter), Device(200) {	}
 };

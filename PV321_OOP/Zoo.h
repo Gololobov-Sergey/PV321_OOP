@@ -57,6 +57,11 @@ public:
 	virtual string voice() override /*final*/ { return "Mau Mau"; }
 
 	virtual void print() override { cout << "I`m Cat " << name << endl; }
+
+	void catchMouse() 
+	{ 
+		cout << name << ", I`m catch a mouse!!" << endl; 
+	}
 };
 
 class SiamCat : public Cat
@@ -80,7 +85,7 @@ class Dog : public Animal, public IPrintable
 public:
 	Dog(string n, int a) : Animal(n, a) {}
 
-	virtual string getType() { return "Dog"; }
+	//virtual string getType() { return "Dog"; }
 
 	virtual string voice() { return "Gaw Gaw"; }
 
@@ -140,6 +145,6 @@ public:
 	LogErrorConsole() {}
 	void writeError(string message) override
 	{	
-		cout << message << endl;
+		cerr << message << endl;
 	}
 };
