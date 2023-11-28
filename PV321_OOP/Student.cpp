@@ -28,6 +28,11 @@ Student::Student(const Student& obj) : group(obj.group)
 	cout << "Constructor copy" << endl;
 }
 
+Student::Student(Student&& obj) : group(obj.group)
+{
+	cout << "Move" << endl;
+}
+
 Student& Student::operator=(const Student& obj) 
 {
 	//1
@@ -41,6 +46,12 @@ Student& Student::operator=(const Student& obj)
 	this->name = new char[len + 1];
 	strcpy_s(name, len + 1, obj.name);
 	//4
+	return *this;
+}
+
+Student& Student::operator=(Student&& obj)
+{
+	cout << "Move=" << endl;
 	return *this;
 }
 

@@ -15,6 +15,12 @@ public:
     Fraction(int num) : Fraction(num, 1) {}
     Fraction(int num, int denom) : numerator(num), denominator(denom) {
         simplify();
+        cout << "Ctor F" << endl;
+    }
+
+    ~Fraction()
+    {
+        cout << "Destr F" << endl;
     }
 
     // знаходження найбільшого спільного дільника
@@ -36,7 +42,7 @@ public:
 
     //вивід
     void display() {
-        cout << numerator << '/' << denominator << endl;
+        cout << this << " " << numerator << '/' << denominator << endl;
     }
 
     // Додавання 

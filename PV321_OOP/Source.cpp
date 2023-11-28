@@ -24,6 +24,7 @@
 #include"Zoo.h"
 #include"WarOfWorld.h"
 #include"MyException.h"
+#include"SmartPointer.h"
 
 using namespace std;
 
@@ -136,6 +137,36 @@ void f1()
 }
 
 
+SmartPointer<Fraction> func()
+{
+	SmartPointer<Fraction> s(new Fraction(1, 2));
+
+	//Fraction* f = new Fraction(1, 2);
+
+	(*s).display();
+	s->display();
+
+	//
+	//int a;
+	//cin >> a;
+	//if (a == 0)
+	//	//throw new exception("Fatal error");
+	//	return;
+
+	
+
+	//delete f;
+	return s;
+}
+
+
+Student getStudent(SmartPointer<Fraction>&& sf)
+{
+	Student s;
+	//
+	return s;
+}
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -144,39 +175,81 @@ int main()
 
 	//lucky();
 
+	//////// 28.11.2023  /////////
+
+	cout.
+
+
+
+
+
+	//unique_ptr<Fraction> f(new Fraction(1, 3));
+	/*unique_ptr<Fraction> f = make_unique<Fraction>(1, 3);
+	f->display();
+	unique_ptr<Fraction> f1;
+	f1 = move(f);
+	f1->display();*/
+	
+	/*shared_ptr<Fraction> f = make_shared<Fraction>(1, 3);
+	f->display();
+	{
+		shared_ptr<Fraction> f1 = f;
+		f1->display();
+		{
+			shared_ptr<Fraction> f2 = f1;
+			f2->display();
+		}
+		f1->display();
+	}
+	f->display();*/
+	
+	
+
+
+	//SmartPointer<Fraction> s = func();
+
+	//Student s = getStudent(SmartPointer<Fraction>(new Fraction(1, 2)));
+
+	/*int a = 5;
+	int& r = a;
+	int&& s = 5;*/
+
+	/*Fraction f(1, 2);
+	Fraction& ff = f;
+	Fraction&& fff = Fraction(1, 3);*/
 
 	//////// 23.11.2023  /////////
-	cout << "Start main" << endl;
-	try
-	{
+	//cout << "Start main" << endl;
+	//try
+	//{
 
-		//f1();
+	//	//f1();
 
-		int a, b;
-		cin >> a >> b;
-		if (b == 0)
-			throw MyException(__DATE__, __TIME__, __FILE__, __LINE__, "arg b = 0!!");
-		//throw "Error #123";
-		cout << a / b << endl;
-	}
-	catch (int a)
-	{
-		cout << "Error " << a << endl;
-	}
-	catch (const char* st)
-	{
-		cout << "Error - " << st << endl;
-	}
-	catch (MyException& e)
-	{
-		e.saveLog();
-		cout << e.getError() << endl;
-	}
-	catch (...)
-	{
-		cout << "Fatal Error" << endl;
-	}
-	cout << "End main" << endl;
+	//	int a, b;
+	//	cin >> a >> b;
+	//	if (b == 0)
+	//		throw MyException(__DATE__, __TIME__, __FILE__, __LINE__, "arg b = 0!!");
+	//	//throw "Error #123";
+	//	cout << a / b << endl;
+	//}
+	//catch (int a)
+	//{
+	//	cout << "Error " << a << endl;
+	//}
+	//catch (const char* st)
+	//{
+	//	cout << "Error - " << st << endl;
+	//}
+	//catch (MyException& e)
+	//{
+	//	e.saveLog();
+	//	cout << e.getError() << endl;
+	//}
+	//catch (...)
+	//{
+	//	cout << "Fatal Error" << endl;
+	//}
+	//cout << "End main" << endl;
 
 
 

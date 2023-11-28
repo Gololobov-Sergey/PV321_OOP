@@ -22,8 +22,10 @@ public:
 	Student(const char* n, int a, int g);
 
 	Student(const Student& obj);
+	Student(Student&& obj);
 
 	Student& operator=(const Student& obj);
+	Student& operator=(Student&& obj);
 	
 	~Student();
 

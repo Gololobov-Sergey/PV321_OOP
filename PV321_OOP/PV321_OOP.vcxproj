@@ -149,6 +149,7 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Queue2.h" />
     <ClInclude Include="Relation.h" />
+    <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StaticArray.h" />
     <ClInclude Include="String.h" />
