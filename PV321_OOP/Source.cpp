@@ -1,5 +1,6 @@
 #include<iostream>
 #include<Windows.h>
+#include<regex>
 
 #include"Student.h"
 #include"Time.h"
@@ -25,6 +26,7 @@
 #include"WarOfWorld.h"
 #include"MyException.h"
 #include"SmartPointer.h"
+#include"TestSystem.h"
 
 using namespace std;
 
@@ -167,6 +169,48 @@ Student getStudent(SmartPointer<Fraction>&& sf)
 	return s;
 }
 
+
+int getIntValue(string coment)
+{
+	while (true)
+	{
+		cout << coment << " : ";
+		int value;
+		cin >> value;
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(1024, '\n');
+			cout << "Bat value. Reapeat enter." << endl;
+		}
+		else
+		{
+			cin.ignore(1024, '\n');
+			return value;
+		}
+	}
+}
+
+int getIntValue2(string coment)
+{
+	while (true)
+	{
+		cout << coment << " : ";
+		string value;
+		getline(cin, value);
+		regex r("^-*\\d+$");
+
+		if (!regex_match(value, r))
+		{
+			cout << "Bat value. Reapeat enter." << endl;
+		}
+		else
+		{
+			return atoi(value.c_str());
+		}
+	}
+}
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -175,11 +219,90 @@ int main()
 
 	//lucky();
 
+
+	string s;
+	cout << s.capacity() << endl;
+	cout << s.size() << endl;
+	s = "mama";
+	cout << s.capacity() << endl;
+	cout << s.size() << endl;
+	s += "lewiwoierwoeir";
+	cout << s.capacity() << endl;
+	cout << s.size() << endl;
+	s.shrink_to_fit();
+	cout << s.capacity() << endl;
+	cout << s.size() << endl;
+	cout << s.max_size() << endl;
+
+	s.append("kkj");
+	
+
+	/*App app;
+	app.menu();*/
+
 	//////// 28.11.2023  /////////
 
-	cout.
+	/*cout.setf(ios::showpos);
+
+	int t;
+	t = getIntValue2("Enter temperature");
+	cout << t << endl;*/
 
 
+	/*string pass;
+	getline(cin, pass);
+	hash<string> h;
+	int a = h(pass);
+	cout << a << endl;*/
+
+
+	/*cout << boolalpha << true << endl;
+	cout << false << endl;
+
+	cout << hex << 255 << endl;
+	cout << dec << 255 << endl;
+	cout << oct << 255 << endl;
+
+	cout << dec;
+	cout.setf(ios::showpos);
+	cout << 255 << endl;
+	cout << -255 << endl;
+
+	cout.unsetf(ios::showpos);*/
+
+	/*cout.setf(ios::scientific);
+	cout << 123.456789 << endl;
+	cout << 1234.56789 << endl;
+	cout << 12345.6789 << endl;
+	cout << 123456.789 << endl;
+	cout << 12.3456789 << endl;
+	cout << .123456789 << endl;
+
+
+	cout.setf(ios::fixed, ios::floatfield);
+	cout << setprecision(0) << 123.456 << endl;
+	cout << setprecision(1) << 123.456 << endl;
+	cout << setprecision(2) << 123.456 << endl;
+	cout << setprecision(3) << 123.456 << endl;
+	cout << setprecision(4) << 123.456 << endl;
+	cout << setprecision(5) << 123.456 << endl;
+	cout << setprecision(6) << 123.456 << endl;
+	cout << setprecision(7) << 123.456 << endl;
+	cout << setprecision(8) << 123.456 << endl;*/
+
+	/*cout.fill('.');
+	
+	cout << setw(10) << internal << 123.32;
+	cout << "Count" << endl;
+	cout << setw(10) << internal << -123.32;
+	cout << "Count" << endl;
+	cout << setw(10) << internal << 123.32;
+	cout << "Count" << endl;
+	cout << setw(10) << internal << -123.32;
+	cout << "Count" << endl;
+
+	cout.width(10);
+	cout << left << 12.3; cout << "Count" << endl;*/
 
 
 

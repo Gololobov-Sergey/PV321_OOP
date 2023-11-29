@@ -12,7 +12,7 @@ int Student::count = 0;
 //	count++;
 //}
 
-Student::Student(const char* n, int a, int g) : group(g)
+Student::Student(const char* n, int a, int g) : group(g), age(0)
 {
 	cout << "Constructor 2 param" << endl;
 	this->setAge(a);
@@ -62,10 +62,11 @@ Student::~Student()
 	delete[] name;
 }
 
-void Student::setAge(int age)
+void Student::setAge(int age) /*noexcept*/
 {
 	if (age < 0 || age > 120)
-		this->age = 0;
+		//this->age = 0;
+		throw invalid_argument("age");
 	this->age = age;
 }
 
