@@ -28,10 +28,10 @@ Student::Student(const Student& obj) : group(obj.group)
 	cout << "Constructor copy" << endl;
 }
 
-Student::Student(Student&& obj) : group(obj.group)
-{
-	cout << "Move" << endl;
-}
+//Student::Student(Student&& obj) : group(obj.group)
+//{
+//	cout << "Move" << endl;
+//}
 
 Student& Student::operator=(const Student& obj) 
 {
@@ -49,11 +49,11 @@ Student& Student::operator=(const Student& obj)
 	return *this;
 }
 
-Student& Student::operator=(Student&& obj)
-{
-	cout << "Move=" << endl;
-	return *this;
-}
+//Student& Student::operator=(Student&& obj)
+//{
+//	cout << "Move=" << endl;
+//	return *this;
+//}
 
 Student::~Student()
 {
@@ -88,7 +88,7 @@ char* Student::getName()
 	return name;
 }
 
-void Student::print()
+void Student::print() const
 {
 	cout << "Name   : " << name << endl;
 	cout << "Age    : " << age << endl;

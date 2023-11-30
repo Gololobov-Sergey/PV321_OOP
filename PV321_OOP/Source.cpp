@@ -231,6 +231,15 @@ bool elemBig5(int a)
 	return a > 5;
 }
 
+class StComp
+{
+public:
+	bool operator()(Student& s1, Student& s2)
+	{
+		return strcmp(s1.getName(), s2.getName()) > 0;
+	}
+};
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -238,8 +247,12 @@ int main()
 	cout.setf(ios::boolalpha);
 
 	//lucky();
-	auto st = [](Student s1, Student s2) {return strcmp(s1.getName(), s2.getName()); };
-	priority_queue <Student, vector<Student>, st> d;
+
+	priority_queue <Student, vector<Student>, StComp> d;
+	d.emplace("Frol", 20, 1);
+	d.emplace("Abram", 20, 2);
+	d.emplace("Ivan", 20, 1);
+	d.top().print();
 
 
 
