@@ -136,6 +136,7 @@
     <ClInclude Include="BasePolice.h" />
     <ClInclude Include="BTree.h" />
     <ClInclude Include="Calc.h" />
+    <ClInclude Include="Container.h" />
     <ClInclude Include="ForwardList.h" />
     <ClInclude Include="Fraction.h" />
     <ClInclude Include="Friend.h" />
