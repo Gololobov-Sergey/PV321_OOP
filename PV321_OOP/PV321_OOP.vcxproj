@@ -146,6 +146,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MyException.h" />
+    <ClInclude Include="NameSpace.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PrintServer.h" />
     <ClInclude Include="Queue.h" />

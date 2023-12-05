@@ -47,6 +47,26 @@ public:
 
 	friend ostream& operator<<(ostream& out, const Student& f);
 
+	bool operator<(const Student& s) const;
+
+
+
 };
 
+class StudentNameComp
+{
+public:
+	bool operator()(Student& s1, Student& s2)
+	{
+		return strcmp(s1.getName(), s2.getName()) < 0;
+	}
+};
 
+class StudentAgeComp
+{
+public:
+	bool operator()(Student& s1, Student& s2)
+	{
+		return s1.getAge() < s2.getAge();
+	}
+};

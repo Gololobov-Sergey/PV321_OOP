@@ -3,6 +3,7 @@
 #include <vector>
 #include <stack>
 #include <deque>
+#include <list>
 
 using namespace std;
 
@@ -37,3 +38,10 @@ public:
 		cout << endl;
 	}
 };
+
+
+template<class T>
+T index(std::list<T>& l, int ind)
+{
+	return *(next(l.begin(), ind));
+}

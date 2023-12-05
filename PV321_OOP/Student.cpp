@@ -110,6 +110,11 @@ int Student::getCount()
 	return count;
 }
 
+bool Student::operator<(const Student& s) const
+{
+	return age < s.age;
+}
+
 ostream& operator<<(ostream& out, const Student& f)
 {
 	out << "Name   : " << f.name << endl;

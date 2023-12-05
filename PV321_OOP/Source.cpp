@@ -5,6 +5,9 @@
 #include<vector>
 #include<algorithm>
 #include<queue>
+#include<list>
+#include<forward_list>
+#include<set>
 
 #include"Student.h"
 #include"Time.h"
@@ -32,6 +35,7 @@
 #include"SmartPointer.h"
 #include"TestSystem.h"
 #include"Container.h"
+#include"NameSpace.h"
 
 using namespace std;
 
@@ -216,10 +220,10 @@ int getIntValue2(string coment)
 	}
 }
 
-template<class T>
-void print(vector<T>& v)
+template<class Container>
+void print(Container& v)
 {
-	for (T a : v)
+	for (auto a : v)
 	{
 		cout << a << " ";
 	}
@@ -231,14 +235,12 @@ bool elemBig5(int a)
 	return a > 5;
 }
 
-class StComp
-{
-public:
-	bool operator()(Student& s1, Student& s2)
-	{
-		return strcmp(s1.getName(), s2.getName()) > 0;
-	}
-};
+
+
+namespace woo = boo::doo;
+
+using namespace boo;
+using namespace Containers;
 
 int main()
 {
@@ -248,46 +250,99 @@ int main()
 
 	//lucky();
 
-	priority_queue <Student, vector<Student>, StComp> d;
+
+
+
+
+	multiset<int> s;
+	s.insert(10);
+	s.insert(1);
+	s.insert(3);
+	s.insert(3);
+	s.insert(3);
+	s.insert(3);
+	s.insert(7);
+	s.insert(2);
+	s.insert(0);
+	print(s);
+
+	//auto i = s.insert(10);
+	//cout << *i.first << " " << i.second << endl;
+
+
+
+	//std::list<int> l;
+	//l.push_front(10);
+	//l.push_front(20);
+	//l.push_front(30);
+	//l.push_front(40);
+	//l.push_front(50);
+	//l.push_front(60);
+	//print(l);
+	///*auto i = l.begin();
+	//advance(i, 2);
+	//cout << *(i) << endl;
+	//cout << *(next(l.begin(), 2)) << endl;*/
+
+	//l.erase(next(l.begin(), 1));
+	//print(l);
+	//int a = index(l, 2);
+
+	/*{
+		using namespace boo;
+		foo();
+	}
+	
+	boo::foo();
+	boo::doo::foo();
+	woo::foo();
+
+	cout << 20 * Const::PI << endl;
+	
+
+	Containers::list<int> eee;
+	std::list<int> eee;*/
+
+	/*priority_queue <Student, vector<Student>, StudentAgeComp> d;
 	d.emplace("Frol", 20, 1);
-	d.emplace("Abram", 20, 2);
-	d.emplace("Ivan", 20, 1);
-	d.top().print();
+	d.emplace("Ivan", 30, 1);
+	d.emplace("Abram", 10, 2);
+	d.top().print();*/
 
 
 
-	/*vector<int> v1;
-	cout << v1.size() << endl;
-	cout << v1.capacity() << endl;
-	print(v1);*/
-	my_vector<int> v1({ 1,2,3,4 });
+	///*vector<int> v1;
+	//cout << v1.size() << endl;
+	//cout << v1.capacity() << endl;
+	//print(v1);*/
+	//my_vector<int> v1({ 1,2,3,4 });
 
-	my_vector<int> v2({1,2,3,4});
-	cout << v2.size() << endl;
-	cout << v2.capacity() << endl;
-	print(v2);
+	//my_vector<int> v2({1,2,3,4});
+	//cout << v2.size() << endl;
+	//cout << v2.capacity() << endl;
+	//print(v2);
 
-	v2.assign({ 7,8,9,5 });
-	print(v2);
+	//v2.assign({ 7,8,9,5 });
+	//print(v2);
 
-	v2.push_back(99);
-	cout << v2.size() << endl;
-	cout << v2.capacity() << endl;
-	print(v2);
+	//v2.push_back(99);
+	//cout << v2.size() << endl;
+	//cout << v2.capacity() << endl;
+	//print(v2);
 
-	v2.pop_back();
-	v2.pop_back();
-	cout << v2.size() << endl;
-	cout << v2.capacity() << endl;
-	print(v2);
+	//v2.pop_back();
+	//v2.pop_back();
+	//cout << v2.size() << endl;
+	//cout << v2.capacity() << endl;
+	//print(v2);
 
-	v2.shrink_to_fit();
-	v2.push_back(99);
-	v2.push_back(77);
-	cout << v2.size() << endl;
-	cout << v2.capacity() << endl;
-	print(v2);
-	v2.print();
+	//v2.shrink_to_fit();
+	//v2.push_back(99);
+	//v2.push_back(77);
+	//cout << v2.size() << endl;
+	//cout << v2.capacity() << endl;
+	//print(v2);
+	//v2.print();
 
 	/*cout << v2[3] << endl;
 	auto t = v2.begin();
@@ -295,7 +350,7 @@ int main()
 	cout << *t << endl;*/
 
 	//v2.insert(v2.begin() + 2, {33,44,55});
-	v2.insert(v2.cbegin() + 2, v1.begin()+1, v1.begin()+3);
+	/*v2.insert(v2.cbegin() + 2, v1.begin()+1, v1.begin()+3);
 
 	print(v2);
 	v2.erase(v2.begin() + 2);
@@ -309,7 +364,7 @@ int main()
 	ss.push(100);
 	ss.push(200);
 	ss.push(300);
-	ss.print();
+	ss.print();*/
 
 
 	/*auto f = []() {cout << "Hello\n"; };
