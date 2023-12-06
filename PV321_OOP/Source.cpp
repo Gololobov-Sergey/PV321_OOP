@@ -8,6 +8,9 @@
 #include<list>
 #include<forward_list>
 #include<set>
+#include<map>
+#include<cstring>
+#include <cctype>
 
 #include"Student.h"
 #include"Time.h"
@@ -225,7 +228,7 @@ void print(Container& v)
 {
 	for (auto a : v)
 	{
-		cout << a << " ";
+		cout << a ;
 	}
 	cout << endl;
 }
@@ -249,12 +252,119 @@ int main()
 	cout.setf(ios::boolalpha);
 
 	//lucky();
+	std::list<Student> l;
+	l.emplace_back("Oleg", 33, 1);
+	l.emplace_back("Anna", 20, 1);
+	l.emplace_back("Irina", 25, 1);
+	l.emplace_back("Timur", 30, 1);
+	print(l);
+
+
+	vector<int> v;
+	for (size_t i = 0; i < 10; i++)
+	{
+		v.push_back(rand() % 10);
+	}
+	print(v);
+
+	//bool b = all_of(v.begin(), v.end(), [](int a) { return a > -1; });
+	//bool b = any_of(v.begin(), v.end(), [](int a) { return a > 9; });
+	//bool b = none_of(v.begin(), v.end(), [](int a) { return a > 9; });
+	//bool b = all_of(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
+	//cout << b << endl;
+
+	auto i = find_if(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
+	cout << *i << endl;
+
+
+
+	//vector<string> words;
+
+	//ifstream in("text.txt");
+	//string w;
+	//while (in >> w)
+	//{
+	//	
+	//	string wn = "";
+	//	for (char t : w)
+	//	{
+	//		wn.push_back(tolower(t));
+	//	}
+	//	words.push_back(wn);
+	//}
+	//in.close();
+
+	//string punkt = ".,!?:;";
+	//
+	//for (string& w : words)
+	//{
+	//	
+	//	for (char c : punkt)
+	//	{
+	//		while (w.find(c) != string::npos)
+	//		{
+	//			w.erase(next(w.begin(), w.find(c)));
+	//		}
+	//	}
+	//}
+
+	//map<string, int> m;
+
+	//for (string s : words)
+	//{
+	//	m[s]++;
+	//}
+
+	///*for (pair<string, int> p : m)
+	//{
+	//	cout << p.first << " - " << p.second << endl;
+	//}*/
+
+	//multimap<int, string> mm;
+	//for (auto p : m)
+	//{
+	//	mm.insert({ p.second, p.first });
+	//}
+	///*for (pair<int, string> p : mm)
+	//{
+	//	cout << p.first << " - " << p.second << endl;
+	//}*/
+
+
+	//int c = mm.count((*mm.rbegin()).first);
+	//auto ii = mm.rbegin();
+	//for (size_t i = 0; i < c; i++)
+	//{
+	//	cout << (*ii).first << " - " << (*ii).second << endl;
+	//	ii++;
+	//}
+
+	//print(words);
 
 
 
 
+	/*map<string, Student> m;
 
-	multiset<int> s;
+	m.emplace(pair<string, Student>("PV321", {"Egor", 20, 2}));
+	Student s1("Oleg", 33, 3);
+	m["PV333"] = s1;
+	auto f = m.find("PV321");
+	if (f != m.end())
+	{
+		cout << (*f).second.getAge() << endl;
+	}
+	else
+	{
+		cout << "Not found" << endl;
+	}
+	Student s = m["PV32"];
+	cout << s.getAge() << endl;
+	auto it = m.erase("PV321");
+	cout << it << endl;*/
+
+
+	/*multiset<int> s;
 	s.insert(10);
 	s.insert(1);
 	s.insert(3);
@@ -264,7 +374,7 @@ int main()
 	s.insert(7);
 	s.insert(2);
 	s.insert(0);
-	print(s);
+	print(s);*/
 
 	//auto i = s.insert(10);
 	//cout << *i.first << " " << i.second << endl;

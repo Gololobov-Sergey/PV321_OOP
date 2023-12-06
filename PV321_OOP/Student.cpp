@@ -1,5 +1,6 @@
 #include "Student.h"
 #include<iostream>
+#include<iomanip>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int Student::count = 0;
 
 Student::Student(const char* n, int a, int g) : group(g), age(0)
 {
-	cout << "Constructor 2 param" << endl;
+	//cout << "Constructor 2 param" << endl;
 	this->setAge(a);
 	this->setName(n);
 	count++;
@@ -25,7 +26,7 @@ Student::Student(const Student& obj) : group(obj.group)
 	this->age = obj.age;
 	this->setName(obj.name);
 	count++;
-	cout << "Constructor copy" << endl;
+	//cout << "Constructor copy" << endl;
 }
 
 //Student::Student(Student&& obj) : group(obj.group)
@@ -58,7 +59,7 @@ Student& Student::operator=(const Student& obj)
 Student::~Student()
 {
 	count--;
-	cout << "Destructor " << name << endl;
+	//cout << "Destructor " << name << endl;
 	delete[] name;
 }
 
@@ -90,8 +91,7 @@ char* Student::getName()
 
 void Student::print() const
 {
-	cout << "Name   : " << name << endl;
-	cout << "Age    : " << age << endl;
+	cout << "Name   : " << setw(10) << right << name << "Age    : " << setw(10) << right << age << endl;
 	/*cout << "Group  : " << group << endl;*/
 }
 
@@ -117,7 +117,6 @@ bool Student::operator<(const Student& s) const
 
 ostream& operator<<(ostream& out, const Student& f)
 {
-	out << "Name   : " << f.name << endl;
-	out << "Age    : " << f.age << endl;
+	out << "Name   : " << setw(10) << left << f.name << "Age    : " << setw(10) << left << f.age << endl;
 	return out;
 }
