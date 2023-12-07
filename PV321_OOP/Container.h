@@ -19,7 +19,11 @@ public:
 		}
 		cout << endl;
 	}
+};
 
+
+class vectorInt : public vector<int>
+{
 
 };
 

@@ -71,7 +71,7 @@ void Student::setAge(int age) /*noexcept*/
 	this->age = age;
 }
 
-int Student::getAge()
+int Student::getAge()const
 {
 	return this->age;
 }

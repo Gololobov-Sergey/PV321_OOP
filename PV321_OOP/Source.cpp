@@ -11,6 +11,7 @@
 #include<map>
 #include<cstring>
 #include <cctype>
+#include <random>
 
 #include"Student.h"
 #include"Time.h"
@@ -228,7 +229,7 @@ void print(Container& v)
 {
 	for (auto a : v)
 	{
-		cout << a ;
+		cout << a << " ";
 	}
 	cout << endl;
 }
@@ -238,6 +239,44 @@ bool elemBig5(int a)
 	return a > 5;
 }
 
+struct EvenOdd
+{
+	int even = 0;
+	int odd = 0;
+	void operator()(int a)
+	{
+		if (a % 2 == 0)
+			even++;
+		else
+			odd++;
+	}
+
+	void reset()
+	{
+		even = odd = 0;
+	}
+};
+
+
+std::list<Student> filter(std::list<Student>& l, bool(*func)(Student& s))
+{
+	std::list<Student> l1;
+	auto s = l.begin();
+	while (s != l.end())
+	{
+		s = find_if(s, l.end(), func);
+		l1.push_back(*s);
+		s++;
+	}
+	return l1;
+}
+
+string ToUpper(const string& str)
+{
+	string st;
+	transform(str.cbegin(), str.cend(), back_inserter(st), [](char t) {return toupper(t); });
+	return st;
+}
 
 
 namespace woo = boo::doo;
@@ -250,22 +289,93 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	cout.setf(ios::boolalpha);
+	srand(time(0));
+
 
 	//lucky();
+
+	//vector<int>v1(10);
+	//int min = 0, max = 20;
+	//generate(v1.begin(), v1.end(), [=]() {return rand() % (max - min + 1) + min; });
+	//print(v1);
+	////auto i = remove(v1.begin(), v1.end(), 1);
+	////v1.resize(distance(v1.begin(), i));
+	////sort(v1.begin(), v1.end(), [](int a, int b) {return a % 10 > b % 10; });
+	//sort(v1.begin(), v1.end(), greater<int>());
+	//print(v1);
+	//std::random_device rd;
+	//std::mt19937 g(rd());
+
+	//std::shuffle(v1.begin(), v1.end(), g);
+	//print(v1);
+
+
+	//cout << *i << endl;
+
+	/*string str = "hello";
+	str[3] = 'a';
+	string st = ToUpper(str);
+	cout << st << endl;*/
+
 	std::list<Student> l;
 	l.emplace_back("Oleg", 33, 1);
 	l.emplace_back("Anna", 20, 1);
 	l.emplace_back("Irina", 25, 1);
 	l.emplace_back("Timur", 30, 1);
+	l.emplace_back("Ilona", 15, 1);
 	print(l);
+	sort(l.begin(), l.end(), [](const Student& s1, const Student& s2) {return s1.getAge() < s2.getAge(); });
+	print(l);
+	
+	//cout << count_if(l.begin(), l.end(), [](Student& s) { return s.getAge() > 22; }) << endl;
+
+	/*std::list<Student> l1;
+	copy_if(l.begin(), l.end(), back_inserter(l1), [](Student& s) { return s.getName()[0] == 'I'; });
+	print(l1);*/
 
 
-	vector<int> v;
-	for (size_t i = 0; i < 10; i++)
+
+	//std::list<Student> l1 = filter(l, [](Student& s) { return s.getAge() > 22; });
+	//std::list<Student> l1 = filter(l, [](Student& s) { return s.getName()[0] == 'I'; });
+	//
+
+	/*for (auto s = l.begin(); s != l.end(); s++)
+	{
+		s = find_if(s, l.end(), [](Student s) { return s.getAge() > 22; });
+		l1.push_back(*s);
+	}*/
+
+	/*auto s = l.begin();
+	while (s != l.end())
+	{
+		s = find_if(s, l.end(), [](Student s) { return s.getAge() > 22; });	
+		l1.push_back(*s);
+		s++;
+	}*/
+
+	//auto i = find_if(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
+
+	//for_each(l.begin(), l.end(), [](Student& s) {s.setAge(s.getAge() + 1); });
+
+	//print(l1);
+
+	//vector<int> v{ 1,2,3,5,5,6,7,8,9 };
+	//vector<int> v1{ 5,5,4 };
+
+	//auto i = search(v.begin(), v.end(), v1.begin(), v1.end());
+	//cout << *i << endl;
+
+	/*for (size_t i = 0; i < 10; i++)
 	{
 		v.push_back(rand() % 10);
-	}
-	print(v);
+	}*/
+	//print(v);
+
+	//for_each(v.begin()+5, v.end(), [](int& a) { a += 10; });
+	//for_each(v.begin(), v.end(), [](int a) {cout << a << " "; });
+
+
+	//cout << sizeof(v) << endl;
 
 	//bool b = all_of(v.begin(), v.end(), [](int a) { return a > -1; });
 	//bool b = any_of(v.begin(), v.end(), [](int a) { return a > 9; });
@@ -273,10 +383,14 @@ int main()
 	//bool b = all_of(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
 	//cout << b << endl;
 
-	auto i = find_if(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
-	cout << *i << endl;
+	//auto i = find_if(l.begin(), l.end(), [](Student s) { return s.getAge() > 22; });
+	//cout << *i << endl;
 
-
+	/*EvenOdd e;
+	e = for_each(v.begin(), v.end(), e);
+	cout << "Even - " << e.even << endl;
+	cout << "Odd  - " << e.odd << endl;
+	e.reset();*/
 
 	//vector<string> words;
 
@@ -284,13 +398,11 @@ int main()
 	//string w;
 	//while (in >> w)
 	//{
-	//	
-	//	string wn = "";
-	//	for (char t : w)
+	//	for (int i = 0; i < w.length(); i++)
 	//	{
-	//		wn.push_back(tolower(t));
+	//		w[i] = tolower(w[i]);
 	//	}
-	//	words.push_back(wn);
+	//	words.push_back(w);
 	//}
 	//in.close();
 

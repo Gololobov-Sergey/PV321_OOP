@@ -14,6 +14,8 @@ private:
 
 	static int count;
 
+
+
 public:
 	Student() : Student(0) {}
 
@@ -31,7 +33,7 @@ public:
 
 	void setAge(int age);
 
-	int getAge();
+	int getAge()const ;
 
 	void setName(const char* n);
 
